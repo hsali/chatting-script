@@ -1,0 +1,18 @@
+{
+  "name": "material-design-chat",
+  "version": "1.0.0",
+  "description": "chating ap ",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Hello world\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-pug": "^3.2.0",
+    "gulp-sass": "^3.1.0"
+  }
+}
