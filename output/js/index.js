@@ -109,12 +109,12 @@ var BuildHTML = function () {
   }, {
     key: 'me',
     value: function me(text) {
-      return this._build(text, 'mmc-me');
+      return this._build(text, 'me');
     }
   }, {
     key: 'them',
     value: function them(text) {
-      return this._build(text, 'mmc-them');
+      return this._build(text, 'them');
     }
   }]);
 
