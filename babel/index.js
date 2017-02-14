@@ -64,12 +64,12 @@ class Messenger {
 
 class BuildHTML {
   constructor() {
-    this.messageWrapper = 'message-wrapper';
-    this.circleWrapper = 'circle-wrapper';
-    this.textWrapper = 'text-wrapper';
+    this.messageWrapper = 'mmc-message-wrapper';
+    this.circleWrapper = 'mmc-circle-wrapper';
+    this.textWrapper = 'mmc-text-wrapper';
     
-    this.meClass = 'me';
-    this.themClass = 'them';
+    this.meClass = 'mmc-me';
+    this.themClass = 'mmc-them';
   }
   
   _build(text, who) {
@@ -80,11 +80,11 @@ class BuildHTML {
   }
   
   me(text) {
-    return this._build(text, 'me');
+    return this._build(text, 'mmc-me');
   }
   
   them(text) {
-    return this._build(text, 'them');
+    return this._build(text, 'mmc-them');
   }
 }
 
@@ -92,18 +92,18 @@ $(document).ready(function() {
   let messenger = new Messenger();
   let buildHTML = new BuildHTML();
 
-  let $input = $('#input');
-  let $send = $('#send');
-  let $content = $('#content');
-  let $inner = $('#inner');
+  let $input = $('#mmc-input');
+  let $send = $('#mmc-send');
+  let $content = $('#mmc-content');
+  let $inner = $('#mmc-inner');
   
   function safeText(text) {
-    $content.find('.message-wrapper').last().find('.text-wrapper').text(text);
+    $content.find('.mmc-message-wrapper').last().find('.mmc-text-wrapper').text(text);
   }
   
   function animateText() {
     setTimeout(() => {
-      $content.find('.message-wrapper').last().find('.text-wrapper').addClass('animated fadeIn');
+      $content.find('.mmc-message-wrapper').last().find('.mmc-text-wrapper').addClass('animated fadeIn');
     }, 350)
   }
   
