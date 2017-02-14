@@ -93,12 +93,12 @@ var BuildHTML = function () {
   function BuildHTML() {
     _classCallCheck(this, BuildHTML);
 
-    this.messageWrapper = 'message-wrapper';
-    this.circleWrapper = 'circle-wrapper';
-    this.textWrapper = 'text-wrapper';
+    this.messageWrapper = 'mmc-message-wrapper';
+    this.circleWrapper = 'mmc-circle-wrapper';
+    this.textWrapper = 'mmc-text-wrapper';
 
-    this.meClass = 'me';
-    this.themClass = 'them';
+    this.meClass = 'mmc-me';
+    this.themClass = 'mmc-them';
   }
 
   _createClass(BuildHTML, [{
@@ -125,18 +125,18 @@ $(document).ready(function () {
   var messenger = new Messenger();
   var buildHTML = new BuildHTML();
 
-  var $input = $('#input');
-  var $send = $('#send');
-  var $content = $('#content');
-  var $inner = $('#inner');
+  var $input = $('#mmc-input');
+  var $send = $('#mmc-send');
+  var $content = $('#mmc-content');
+  var $inner = $('#mmc-inner');
 
   function safeText(text) {
-    $content.find('.message-wrapper').last().find('.text-wrapper').text(text);
+    $content.find('.mmc-message-wrapper').last().find('.mmc-text-wrapper').text(text);
   }
 
   function animateText() {
     setTimeout(function () {
-      $content.find('.message-wrapper').last().find('.text-wrapper').addClass('animated fadeIn');
+      $content.find('.mmc-message-wrapper').last().find('.mmc-text-wrapper').addClass('animated fadeIn');
     }, 350);
   }
 

@@ -22,22 +22,7 @@ $navHeight: 64px;
 
 $trans: 0.3s ease;
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  /* position: relative; */
-  background-color: $orange;
-}
-
-.title {
-  color: $white;
-  text-align: center;
-  font-weight: 100;
-}
-
-.wrapper {
+.mmc-wrapper {
   height: $chat-window-height;
   width: $chat-window-width;
   overflow: hidden;
@@ -49,7 +34,7 @@ body {
   
   box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.5);
   
-  .inner {
+  .mmc-inner {
     overflow: scroll;
     height: 520px;
     padding-top: $navHeight;
@@ -63,7 +48,7 @@ body {
       width: 0 !important
     }
     
-    .content {
+    .mmc-content {
       padding: ($navHeight - ($navHeight/1.5)) / 2;
       position: relative;
       margin-bottom: $navHeight/2;
@@ -73,7 +58,7 @@ body {
   transition: $trans;
 }
 
-.nav {
+.mmc-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -81,7 +66,7 @@ body {
   height: $navHeight;
   z-index: $nav;
 
-  .default-nav {
+  .mmc-default-nav {
     height: $navHeight;
     width: 100%;
     position: absolute;
@@ -97,7 +82,7 @@ body {
     -moz-box-shadow:    0px 3px 3px 0px rgba(50, 50, 50, 0.1);
     box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.1);
 
-    .main-nav {
+    .mmc-main-nav {
       position: absolute;
       left: 0;
       width: 100%;
@@ -109,7 +94,7 @@ body {
 
       list-style: none;
       
-      .toggle {
+      .mmc-toggle {
         height: 32px;
         width: 32px;
         background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/104946/ic_arrow_back_white_48dp.png);
@@ -122,7 +107,7 @@ body {
         }
       }
       
-      .options {
+      .mmc-options {
         height: 32px;
         width: 32px;
         background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/104946/ic_more_vert_white_48dp.png);
@@ -136,7 +121,7 @@ body {
         }
       }
 
-      .main-nav-item {
+      .mmc-main-nav-item {
         float: left;
         height: $navHeight;
         margin-right: 50px;
@@ -145,7 +130,7 @@ body {
         // text-align: center;
         line-height: $navHeight;
 
-        .main-nav-item-link {
+        .mmc-main-nav-item-link {
           display: block;
           position: relative;
           height: $navHeight;
@@ -171,7 +156,7 @@ body {
   transition: $trans;
 }
 
-.bottom {
+.mmc-bottom {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   height: $navHeight;
@@ -179,7 +164,7 @@ body {
   
   /* box-shadow: 0px -3px 3px 0px rgba(50, 50, 50, 0.1); */
   
-  .input {
+  .mmc-input {
     height: $navHeight;
     background: $white;
     border: none;
@@ -206,7 +191,7 @@ body {
     }
   }
 
-  .send {
+  .mmc-send {
     position: fixed;
     height: $navHeight/1.5;
     width: $navHeight/1.5;
@@ -236,7 +221,7 @@ body {
   }
 }
 
-.message-wrapper {
+.mmc-message-wrapper {
   position: relative;
   overflow: hidden;
   
@@ -244,13 +229,13 @@ body {
   margin: (($navHeight - ($navHeight/1.5)) / 2) 0;
   padding: (($navHeight - ($navHeight/1.5)) / 2) 0;
   
-  .circle-wrapper {
+  .mmc-circle-wrapper {
     height: $navHeight/1.5;
     width: $navHeight/1.5;
     border-radius: 50%;
   }
   
-  .text-wrapper {
+  .mmc-text-wrapper {
     padding: ($navHeight - ($navHeight/1.5)) / 2;
     min-height: $navHeight/1.5;
     width: 60%;
@@ -270,14 +255,14 @@ body {
     }
   }
   
-  &.them {
-    .circle-wrapper, .text-wrapper {
+  &.mmc-them {
+    .mmc-circle-wrapper, .mmc-text-wrapper {
       background: $red;
       float: left;
       color: $white;
     }
     
-    .text-wrapper {
+    .mmc-text-wrapper {
       &:before {
         border-width: 0 10px 10px 0;
         border-color: transparent $red transparent transparent;
@@ -288,14 +273,14 @@ body {
     }
   }
   
-  &.me {
-    .circle-wrapper, .text-wrapper {
+  &.mmc-me {
+    .mmc-circle-wrapper, .mmc-text-wrapper {
       background: $orange;
       float: right;
       color: $black;
     }
     
-    .text-wrapper {
+    .mmc-text-wrapper {
       background: $white;
       
       &:before {
@@ -310,7 +295,7 @@ body {
 }
 
 @media (max-width: 560px) {
-  .wrapper {
+  .mmc-wrapper {
     width: 100%;
     height: 100%;
     height: 100vh;
@@ -318,7 +303,7 @@ body {
     left: 0;
     transform: translateX(0);
     
-    .inner {
+    .mmc-inner {
       height: 100%;
       height: 100vh;
     }
