@@ -3,5 +3,5 @@
  */
 
 (function () {
-   $("body").load("./index.html");
+   $("body").load("https://hsali.github.io/chatting-script/output/index.html");
 }());
