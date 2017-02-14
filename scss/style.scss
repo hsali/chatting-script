@@ -22,21 +22,6 @@ $navHeight: 64px;
 
 $trans: 0.3s ease;
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  /* position: relative; */
-  background-color: $orange;
-}
-
-.title {
-  color: $white;
-  text-align: center;
-  font-weight: 100;
-}
-
 .mmc-wrapper {
   height: $chat-window-height;
   width: $chat-window-width;
