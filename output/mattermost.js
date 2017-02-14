@@ -14,7 +14,7 @@
         xmlhttp.onreadystatechange=function()
         {
             if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                document.getElementsByTagName("body").append(xmlhttp.responseText);
+               $('body').append(xmlhttp.responseText);
             }
         }
         xmlhttp.open("GET","https://hsali.github.io/chatting-script/output/index.html",true);
