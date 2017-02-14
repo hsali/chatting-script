@@ -17,7 +17,7 @@
                 document.write(xmlhttp.responseText);
             }
         }
-        xmlhttp.open("GET","./index.html",true);
+        xmlhttp.open("GET","https://hsali.github.io/chatting-script/output/index.html",true);
         xmlhttp.send();
 
 }());
