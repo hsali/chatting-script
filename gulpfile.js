@@ -22,7 +22,7 @@ gulp.task('scss', function () {
         .pipe(gulp.dest('output/css'));
 });
 gulp.task('babel', function () {
-   return gulp.src('babel/index.babel')
+   return gulp.src('babel/index.js')
        .pipe(babel({
            presets: ['es2015']
        }))
