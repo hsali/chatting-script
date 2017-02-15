@@ -23,7 +23,7 @@ gulp.task('scss', function () {
         .pipe(gulp.dest('output/css'));
 });
 gulp.task('babel', function () {
-   return gulp.src('babel/index.js')
+   return gulp.src('babel/*.js')
        .pipe(babel({
            presets: ['es2015']
        }))
@@ -52,7 +52,7 @@ gulp.task('test-scss', function () {
         .pipe(gulp.dest('test/css'));
 });
 gulp.task('test-babel', function () {
-    return gulp.src('babel/index.js')
+    return gulp.src('babel/*.js')
         .pipe(babel({
             presets: ['es2015']
         }))
