@@ -4,7 +4,7 @@ $dingy: #495B6A;
 $white: #ffffff;
 $purple: #673AB7;
 $yellow: #FFEB3B;
-$red: #2196F3;
+$red: #44AECE;
 $orange: #FF5722;
 $black: #333333;
 
@@ -35,8 +35,9 @@ $trans: 0.3s ease;
   box-shadow:         0px 3px 3px 0px rgba(50, 50, 50, 0.5);
   
   .mmc-inner {
-    overflow: scroll;
-    height: 520px;
+    overflow: auto;
+    height: 338px;
+    margin-top: 60px;
     padding-top: $navHeight;
     background: darken($white, 5%);
     
@@ -45,7 +46,7 @@ $trans: 0.3s ease;
     //gotta hide windows scrollbars
     
     &::-webkit-scrollbar {
-      width: 0 !important
+    width: 0;
     }
     
     .mmc-content {
@@ -174,7 +175,7 @@ $trans: 0.3s ease;
     top: 0;
     padding: 0 5%;
     resize: none;
-    overflow: scroll;
+    overflow: auto;
     padding-top: ($navHeight/2) - 8;
     font-weight: 300;
     
@@ -187,7 +188,7 @@ $trans: 0.3s ease;
     //gotta hide windows scrollbars
     
     &::-webkit-scrollbar {
-      width: 0 !important
+
     }
   }
 
@@ -224,7 +225,7 @@ $trans: 0.3s ease;
 .mmc-message-wrapper {
   position: relative;
   overflow: hidden;
-  
+  word-wrap:break-word;
   width: 100%;
   margin: (($navHeight - ($navHeight/1.5)) / 2) 0;
   padding: (($navHeight - ($navHeight/1.5)) / 2) 0;

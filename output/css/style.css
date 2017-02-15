@@ -10,14 +10,15 @@
   box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.5);
   transition: 0.3s ease; }
   .mmc-wrapper .mmc-inner {
-    overflow: scroll;
-    height: 520px;
+    overflow: auto;
+    height: 338px;
+    margin-top: 60px;
     padding-top: 64px;
     background: #f2f2f2;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none; }
     .mmc-wrapper .mmc-inner::-webkit-scrollbar {
-      width: 0 !important; }
+      width: 0; }
     .mmc-wrapper .mmc-inner .mmc-content {
       padding: 10.66667px;
       position: relative;
@@ -38,8 +39,8 @@
     left: 0;
     top: 0;
     z-index: 110;
-    background-color: #2196F3;
-    border-bottom: 3px solid #0c7cd5;
+    background-color: #44AECE;
+    border-bottom: 3px solid #2e92b1;
     color: #ffffff;
     -webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.1);
     -moz-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.1);
@@ -110,22 +111,20 @@
     top: 0;
     padding: 0 5%;
     resize: none;
-    overflow: scroll;
+    overflow: auto;
     padding-top: 24px;
     font-weight: 300;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none; }
     .mmc-bottom .mmc-input:focus {
       outline: none; }
-    .mmc-bottom .mmc-input::-webkit-scrollbar {
-      width: 0 !important; }
   .mmc-bottom .mmc-send {
     position: fixed;
     height: 42.66667px;
     width: 42.66667px;
     border-radius: 50%;
     border: 0;
-    background: #2196F3;
+    background: #44AECE;
     color: #ffffff;
     bottom: 10.66667px;
     right: 10.66667px; }
@@ -146,6 +145,7 @@
 .mmc-message-wrapper {
   position: relative;
   overflow: hidden;
+  word-wrap: break-word;
   width: 100%;
   margin: 10.66667px 0;
   padding: 10.66667px 0; }
@@ -170,12 +170,12 @@
       height: 0;
       border-style: solid; }
   .mmc-message-wrapper.mmc-them .mmc-circle-wrapper, .mmc-message-wrapper.mmc-them .mmc-text-wrapper {
-    background: #2196F3;
+    background: #44AECE;
     float: left;
     color: #ffffff; }
   .mmc-message-wrapper.mmc-them .mmc-text-wrapper:before {
     border-width: 0 10px 10px 0;
-    border-color: transparent #2196F3 transparent transparent;
+    border-color: transparent #44AECE transparent transparent;
     position: absolute;
     top: 0;
     left: -9px; }
