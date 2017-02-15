@@ -142,7 +142,7 @@ $(document).ready(function () {
 
   function scrollBottom() {
     $($inner).animate({
-      scrollTop: $($content).offset().top + $($content).outerHeight(true)
+      scrollTop: $($content).outerHeight(true)
     }, {
       queue: false,
       duration: 'ease'
