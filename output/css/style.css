@@ -17,8 +17,6 @@
     background: #f2f2f2;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none; }
-    .mmc-wrapper .mmc-inner::-webkit-scrollbar {
-      width: 0; }
     .mmc-wrapper .mmc-inner .mmc-content {
       padding: 10.66667px;
       position: relative;
