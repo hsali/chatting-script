@@ -93,3 +93,6 @@ crashlytics-build.properties
 fabric.properties
 
 .idea/
+test/css/
+test/js/
+test/index.html
