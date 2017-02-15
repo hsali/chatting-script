@@ -59,4 +59,4 @@ gulp.task('test-babel', function () {
         .pipe(gulp.dest('test/js'));
 });
 
-gulp.task('default', ['test-templates', 'test-scss','test-babel']);
+gulp.task('test', ['test-templates', 'test-scss','test-babel']);
