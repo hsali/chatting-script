@@ -7,7 +7,7 @@ class API{
         this.getTeamMembers = "";
         //For Post
         this.createPost = "";
-        this.getPosts = "";
+        this.getPosts = "GetAllposts";
         this.getPost = "";
         this.getPostsSinceTime = "";
         this.getPostsBeforePost = "";
@@ -71,18 +71,28 @@ class Post {
         this.HostUrl = options.HostUrl;
         this.Controller = "MattermostApi"
     }
-    testPost(){
-        alert("hello test post" +this.HostUrl + "/" + this.Controller);
-    }
+   testPost(){
+       alert("hello test post" +this.HostUrl + "/" + this.Controller);
+       var path ="getAllPosts";
+       $.ajax({
+           url: this.HostUrl+ '/' +this.Controller + '/'+path,
+           dataType: 'json',
+           type: 'GET',
+           success: function (data) {
+               console.log("getAllPost succes");
+               alert("getAllPost success" + data);
+           }
+       });
+   }
     getPosts(){
-        var path ="getPosts";
+        var path ="getAllPosts";
         $.ajax({
             url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
-            data: {id: team_id,channel_id,offset,limit},
+            data: {team_id,offset,limit},
             type: 'POST',
             success: function (data) {
-                $("#getaPost").html(data)
+                alert("getposts parameters:").html(data)
             }
         });
     }
