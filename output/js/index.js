@@ -172,7 +172,10 @@ $(document).ready(function () {
   function sendMessage() {
     var text = $input.val();
     messenger.send(text);
-
+    var pos = new Post({ HostUrl: "http://localhost:51916" });
+    alert("hello send");
+    pos.testPost();
+    // pos.getPosts()
     $input.val('');
     $input.focus();
   }
