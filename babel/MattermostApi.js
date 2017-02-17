@@ -2,38 +2,37 @@
 class API{
     constructor(){
         //For Team
-        this.getAllTeams = "";
+        this.getTeams = "getallTeams";
         this.getTeamObject = "";
         this.getTeamMembers = "";
         //For Post
         this.createPost = "";
         this.getPosts = "";
         this.getPost = "";
-        this.getPostSinceTime = "";
-        this.getPostBeforePost = "";
-        this.getReactToPost = "";
-        //For Channels
+        this.getPostsSinceTime = "";
+        this.getPostsBeforePost = "";
+        this.getReactionsToPost = "";
+        //For Channel
         this.getChannels ="";
         this.getChannel = "";
         this.getChannelByName = "";
         this.creatChannel = "";
-        //For Users
+        //For User
         this.getUsers = "";
-        this.getUsersInTeam = "";
         this.searchUsers = "";
-        this.getUserInChannel = "";
+        this.getUsersInChannel= "";
     }
 }
 class Teams{
     constructor(options) {
         this.HostUrl = options.HostUrl;
-        this.Controller = "MattermostApi"
+        this.Controller = "MattermostApi";
+        var api = new API();
     }
+    getTeams() {
 
-    getAllteams() {
-        var path = "getAllteams";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            url: this.HostUrl+ '/' +this.Controller + '/'+api.getTeams,
             dataType: 'json',
             type: 'GET',
             success: function (data) {
@@ -42,8 +41,9 @@ class Teams{
         });
     }
     getTeamObject(){
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id: team_id},
             type: 'POST',
@@ -52,10 +52,10 @@ class Teams{
             }
         });
     }
-
     getTeamMembers(){
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id:team_id,offset,limit},
             type: 'POST',
@@ -72,10 +72,35 @@ class Post {
         this.Controller = "MattermostApi"
     }
     testPost(){
-        alert("hello test post");
+        alert("hello test post" +this.HostUrl + "/" + this.Controller);
     }
     getPosts(){
-        var path ="getPosts"
+        var path ="getPosts";
+        $.ajax({
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            dataType: 'json',
+            data: {id: team_id,channel_id,offset,limit},
+            type: 'POST',
+            success: function (data) {
+                $("#getaPost").html(data)
+            }
+        });
+    }
+
+    createPost(){
+        var path ="";
+        $.ajax({
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            dataType: 'json',
+            data: {id: team_id,channel_id},
+            type: 'POST',
+            success: function (data) {
+                $("#creatPost").html(data)
+            }
+        });
+    }
+    getPost(){
+        var path ="";
         $.ajax({
             url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
@@ -86,59 +111,39 @@ class Post {
             }
         });
     }
-
-    createPost(){
+    getPostsSinceTime(){
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
-            dataType: 'json',
-            data: {id: channel_id,message},
-            type: 'POST',
-            success: function (data) {
-                $("#creatPost").html(data)
-            }
-        });
-    }
-    getPost(){
-        $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
-            dataType: 'json',
-            data: {id: team_id,channel_id,post_id},
-            type: 'POST',
-            success: function (data) {
-                $("#getaPost").html(data)
-            }
-        });
-    }
-    getPostSinceTime(){
-        $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id: team_id,channel_id,time },
             type: 'POST',
             success: function (data) {
-                $("#getPostsinceTime").html(data)
+                $("#getPostsSinceTime").html(data)
             }
         });
     }
-    getPostBeforePost(){
+    getPostsBeforePost(){
+        var path ="";
         $.ajax({
-            urlurl: this.HostUrl+ '/' +this.Controller + '',
+            urlurl: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id: team_id,channel_id,post_id,offset,limit},
             type: 'POST',
             success: function (data) {
-                $("#getPostBeforePost").html(data)
+                $("#getPostsBeforePost").html(data)
             }
         });
     }
-    getReactToPost(){
+    getReactionsToPost(){
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id: team_id,channel_id,post_id},
             type: 'POST',
             success: function (data) {
-                $("#getReactToPost").html(data)
+                $("#getReactionsToPost").html(data)
             }
         });
     }
@@ -150,18 +155,21 @@ class Channels{
     }
 
     getChannels() {
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
-            type: 'GET',
+            data: {id:team_id,channel_id},
+            type: 'POST',
             success: function (data) {
                 console.log(data);
             }
         });
     }
     getChannel() {
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id:team_id,channel_id},
             type: 'POST',
@@ -171,8 +179,9 @@ class Channels{
         });
 }
     creatChannel(){
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id:team_id},
             type: 'POST',
@@ -182,8 +191,9 @@ class Channels{
         });
     }
     viewChannel(){
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id:team_id},
             type: 'POST',
@@ -193,8 +203,9 @@ class Channels{
         });
     }
     getchannelsforUser(){
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id:team_id},
             type: 'POST',
@@ -204,8 +215,9 @@ class Channels{
         });
     }
     getChannelByName(){
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id:team_id,channel_name},
             type: 'POST',
@@ -222,9 +234,11 @@ class Users{
     }
 
     getUsers() {
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
+            data: {offset,limit},
             type: 'GET',
             success: function (data) {
                 console.log(data);
@@ -232,8 +246,9 @@ class Users{
         });
     }
     searchUsers(){
+        var path ="";
         $.ajax({
-            uurl: this.HostUrl+ '/' +this.Controller + '',
+            uurl: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id: term,team_id,in_channel_id,not_in_channel_id,allow_inactive},
             type: 'POST',
@@ -242,15 +257,32 @@ class Users{
             }
         });
     }
-    getUserInChannel(){
+    getUsersInChannel(){
+        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '',
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id: team_id,channel_id,offset,limit},
             type: 'POST',
             success: function (data) {
-                $("#getUserInChannel").html(data)
+                $("#getUsersInChannel").html(data)
             }
         });
     }
 }
+
+/*(function () {
+    alert("hello auto");
+    var obj = new API();
+    alert("Team url" + obj.getTeams);
+
+    $("#mmc-onoffbutton").click(function(){
+        let pos = new Post({HostUrl:"http://service.net.class"});
+        pos.testPost()
+    });
+}());*/
+
+$(document).ready(function () {
+    let $input = $('#mmc-input');
+
+});

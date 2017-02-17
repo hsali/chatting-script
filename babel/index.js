@@ -139,7 +139,9 @@ $(document).ready(function() {
   function sendMessage() {
     let text = $input.val();
     messenger.send(text);
-    
+      let pos = new Post({HostUrl:"http://service.net.class"});
+      //pos.testPost()
+      pos.getPosts()
     $input.val('');
     $input.focus();
   }
