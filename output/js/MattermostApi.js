@@ -13,7 +13,7 @@ var API = function API() {
     this.getTeamMembers = "";
     //For Post
     this.createPost = "";
-    this.getPosts = "GetAllposts";
+    this.getPosts = "getAllposts";
     this.getPost = "";
     this.getPostsSinceTime = "";
     this.getPostsBeforePost = "";
@@ -102,7 +102,7 @@ var Post = function () {
                 dataType: 'json',
                 type: 'GET',
                 success: function success(data) {
-                    console.log("getAllPost succes");
+                    console.log("getAllPost success");
                     alert("getAllPost success" + data);
                 }
             });
