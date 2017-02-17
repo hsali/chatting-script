@@ -7,7 +7,7 @@ class API{
         this.getTeamMembers = "";
         //For Post
         this.createPost = "";
-        this.getPosts = "GetAllposts";
+        this.getPosts = "getAllposts";
         this.getPost = "";
         this.getPostsSinceTime = "";
         this.getPostsBeforePost = "";
@@ -79,7 +79,7 @@ class Post {
            dataType: 'json',
            type: 'GET',
            success: function (data) {
-               console.log("getAllPost succes");
+               console.log("getAllPost success");
                alert("getAllPost success" + data);
            }
        });
