@@ -152,13 +152,14 @@ $(document).ready(function() {
 
     let posts_data = JSON.parse(posts_response);
     let posts_orders= posts_data.order;
+    let rev_posts_orders = posts_orders.reverse();
     let post_items = posts_data.posts;
     var i=0;
     console.log("posts" + post_items);
-    console.log("orders" +posts_orders);
-    console.log("message: " + post_items[posts_orders[0]].message);
-    while(i<posts_orders.length){
-        let message = post_items[posts_orders[i]].message;
+    console.log("orders" +rev_posts_orders);
+    console.log("message: " + post_items[rev_posts_orders[0]].message);
+    while(i<rev_posts_orders.length){
+        let message = post_items[rev_posts_orders[i]].message;
         setTimeout(() => {
             console.log(message);
             messenger.recieve(message);

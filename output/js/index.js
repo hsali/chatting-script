@@ -189,8 +189,8 @@ $(document).ready(function () {
   var post_items = posts_data.posts;
   var i = 0;
   console.log("posts" + post_items);
-  console.log("orders" + posts_orders);
-  console.log("message: " + post_items[posts_orders[0]].message);
+  console.log("orders" + rev_posts_orders);
+  console.log("message: " + post_items[rev_posts_orders[0]].message);
 
   var _loop = function _loop() {
     var message = post_items[rev_posts_orders[i]].message;
