@@ -72,29 +72,32 @@ class Post {
         this.Controller = "MattermostApi"
     }
    testPost(){
-       alert("hello test post" +this.HostUrl + "/" + this.Controller);
-       var path ="getAllPosts";
+       console.log("before ajax call to Test/index")
+       let path ="index";
+       let data ="";
        $.ajax({
-           url: this.HostUrl+ '/' +this.Controller + '/'+path,
+           url: this.HostUrl+ '/' +"Test" + '/'+path,
            dataType: 'json',
            type: 'GET',
-           success: function (data) {
-               console.log("getAllPost success");
-               alert("getAllPost success" + data);
+           success: function (response) {
+               data = response;
            }
        });
+       return data;
    }
     getPosts(){
-        var path ="getAllPosts";
+       let data="";
+        let path ="getAllPosts";
         $.ajax({
             url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {team_id,offset,limit},
-            type: 'POST',
-            success: function (data) {
-                alert("getposts parameters:").html(data)
+            type: 'GET',
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
 
     createPost(){

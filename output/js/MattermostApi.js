@@ -95,31 +95,34 @@ var Post = function () {
     _createClass(Post, [{
         key: "testPost",
         value: function testPost() {
-            alert("hello test post" + this.HostUrl + "/" + this.Controller);
-            var path = "getAllPosts";
+            console.log("before ajax call to Test/index");
+            var path = "index";
+            var data = "";
             $.ajax({
-                url: this.HostUrl + '/' + this.Controller + '/' + path,
+                url: this.HostUrl + '/' + "Test" + '/' + path,
                 dataType: 'json',
                 type: 'GET',
-                success: function success(data) {
-                    console.log("getAllPost success");
-                    alert("getAllPost success" + data);
+                success: function success(response) {
+                    data = response;
                 }
             });
+            return data;
         }
     }, {
         key: "getPosts",
         value: function getPosts() {
+            var data = "";
             var path = "getAllPosts";
             $.ajax({
                 url: this.HostUrl + '/' + this.Controller + '/' + path,
                 dataType: 'json',
                 data: { team_id: team_id, offset: offset, limit: limit },
-                type: 'POST',
-                success: function success(data) {
-                    alert("getposts parameters:").html(data);
+                type: 'GET',
+                success: function success(response) {
+                    data = response;
                 }
             });
+            return data;
         }
     }, {
         key: "createPost",
