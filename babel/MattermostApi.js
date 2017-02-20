@@ -35,10 +35,11 @@ class Teams{
             url: this.HostUrl+ '/' +this.Controller + '/'+api.getTeams,
             dataType: 'json',
             type: 'GET',
-            success: function (data) {
-                console.log(data);
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
     getTeamObject(){
         var path ="";
@@ -47,10 +48,11 @@ class Teams{
             dataType: 'json',
             data: {id: team_id},
             type: 'POST',
-            success: function (data) {
-                $("#getTeamObject").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
     getTeamMembers(){
         var path ="";
@@ -59,14 +61,16 @@ class Teams{
             dataType: 'json',
             data: {id:team_id,offset,limit},
             type: 'POST',
-            success: function (data) {
-                $("#getTeamMembers").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
 }
 
 class Post {
+
     constructor(options) {
         this.HostUrl = options.HostUrl;
         this.Controller = "MattermostApi"
@@ -91,7 +95,6 @@ class Post {
         $.ajax({
             url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
-            data: {team_id,offset,limit},
             type: 'GET',
             success: function (response) {
                 data = response;
@@ -100,65 +103,77 @@ class Post {
         return data;
     }
 
-    createPost(){
-        var path ="";
+    createPost(msg){
+        let data="";
+        var path ="messagePost";
         $.ajax({
             url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
-            data: {id: team_id,channel_id},
+            data: {TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
+            ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
+            Message: "Hello World"},
             type: 'POST',
-            success: function (data) {
-                $("#creatPost").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
     getPost(){
+        let data="";
         var path ="";
         $.ajax({
             url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
-            data: {id: team_id,channel_id,post_id},
+            data: {team_id:"c9fshi7c5brn7fq5saqf35xtsy",channel_id,post_id},
             type: 'POST',
-            success: function (data) {
-                $("#getaPost").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
     getPostsSinceTime(){
+        let data="";
+        var path ="getPostSinceATime";
+        $.ajax({
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            dataType: 'json',
+            data: {team_id:"c9fshi7c5brn7fq5saqf35xtsy",channel_id:"6cjbxemczff4bp3h68gkhcmwty",time:"1487570944617" },
+            type: 'POST',
+            success: function (response) {
+                data = response;
+            }
+        });
+        return data;
+    }
+    getPostsBeforePost(){
+        let data="";
         var path ="";
         $.ajax({
             url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
-            data: {id: team_id,channel_id,time },
+            data: {team_id:"c9fshi7c5brn7fq5saqf35xtsy",channel_id:"6cjbxemczff4bp3h68gkhcmwty",post_id:"12345",offset:"slkjsdf",limit},
             type: 'POST',
-            success: function (data) {
-                $("#getPostsSinceTime").html(data)
+            success: function (response) {
+                data = response;
             }
         });
-    }
-    getPostsBeforePost(){
-        var path ="";
-        $.ajax({
-            urlurl: this.HostUrl+ '/' +this.Controller + '/'+path,
-            dataType: 'json',
-            data: {id: team_id,channel_id,post_id,offset,limit},
-            type: 'POST',
-            success: function (data) {
-                $("#getPostsBeforePost").html(data)
-            }
-        });
+        return data;
     }
     getReactionsToPost(){
+        let data="";
         var path ="";
         $.ajax({
             url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             data: {id: team_id,channel_id,post_id},
             type: 'POST',
-            success: function (data) {
-                $("#getReactionsToPost").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
 }
 class Channels{
@@ -174,10 +189,11 @@ class Channels{
             dataType: 'json',
             data: {id:team_id,channel_id},
             type: 'POST',
-            success: function (data) {
-                console.log(data);
+            ssuccess: function (response) {
+                data = response;
             }
         });
+        return data;
     }
     getChannel() {
         var path ="";
@@ -186,10 +202,11 @@ class Channels{
             dataType: 'json',
             data: {id:team_id,channel_id},
             type: 'POST',
-            success: function (data) {
-                $("#getChannel").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
 }
     creatChannel(){
         var path ="";
@@ -198,10 +215,11 @@ class Channels{
             dataType: 'json',
             data: {id:team_id},
             type: 'POST',
-            success: function (data) {
-                $("#creatChannel").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
     viewChannel(){
         var path ="";
@@ -210,10 +228,11 @@ class Channels{
             dataType: 'json',
             data: {id:team_id},
             type: 'POST',
-            success: function (data) {
-                $("#viewChannel").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
     getchannelsforUser(){
         var path ="";
@@ -222,10 +241,11 @@ class Channels{
             dataType: 'json',
             data: {id:team_id},
             type: 'POST',
-            success: function (data) {
-                $("#getchannelsforUser").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
     getChannelByName(){
         var path ="";
@@ -234,10 +254,11 @@ class Channels{
             dataType: 'json',
             data: {id:team_id,channel_name},
             type: 'POST',
-            success: function (data) {
-                $("#getchannelsforUser").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
 }
 class Users{
@@ -253,10 +274,11 @@ class Users{
             dataType: 'json',
             data: {offset,limit},
             type: 'GET',
-            success: function (data) {
-                console.log(data);
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
     searchUsers(){
         var path ="";
@@ -265,10 +287,11 @@ class Users{
             dataType: 'json',
             data: {id: term,team_id,in_channel_id,not_in_channel_id,allow_inactive},
             type: 'POST',
-            success: function (data) {
-                $("#searchUsers").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
     getUsersInChannel(){
         var path ="";
@@ -277,10 +300,11 @@ class Users{
             dataType: 'json',
             data: {id: team_id,channel_id,offset,limit},
             type: 'POST',
-            success: function (data) {
-                $("#getUsersInChannel").html(data)
+            success: function (response) {
+                data = response;
             }
         });
+        return data;
     }
 }
 
