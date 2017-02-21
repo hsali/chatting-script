@@ -1,16 +1,18 @@
 
 class API{
     constructor(){
+        this.HostUrl = "http://localhost:51916"
+        this.Controller = "MattermostApi";
         //For Team
         this.getTeams = "getallTeams";
         this.getTeamObject = "";
         this.getTeamMembers = "";
         //For Post
-        this.createPost = "";
-        this.getPosts = "getAllposts";
+        this.createPost = "messagePost";
+        this.getPosts = "getAllPosts";
         this.getPost = "";
-        this.getPostsSinceTime = "";
-        this.getPostsBeforePost = "";
+        this.getPostsSinceTime = "getPostSinceATime";
+        this.getPostsAfterPost = "postsAfterPost";
         this.getReactionsToPost = "";
         //For Channel
         this.getChannels ="";
@@ -24,16 +26,15 @@ class API{
     }
 }
 class Teams{
-    constructor(options) {
+   /* constructor(options) {
         this.HostUrl = options.HostUrl;
         this.Controller = "MattermostApi";
         var api = new API();
-    }
+    }*/
     getTeams() {
-        var data = "";
-        var path = "";
+
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            url: api.HostUrl+ '/' +api.Controller+ '/'+api.getTeams,
             dataType: 'json',
             type: 'GET',
             success: function (response) {
@@ -45,7 +46,7 @@ class Teams{
     getTeamObject(){
         var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            url: api.HostUrl+ '/' +api.Controller+ '/'+api.getTeamObject,
             dataType: 'json',
             data: {id: team_id},
             type: 'POST',
@@ -58,7 +59,7 @@ class Teams{
     getTeamMembers(){
         var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            url: api.HostUrl+ '/' +api.Controller+ '/'+api.getTeamObject,
             dataType: 'json',
             data: {id:team_id,offset,limit},
             type: 'POST',
@@ -71,30 +72,16 @@ class Teams{
 }
 
 class Post {
-
-    constructor(options) {
-        this.HostUrl = options.HostUrl;
-        this.Controller = "MattermostApi"
+    constructor() {
+        let api = new API();
     }
    testPost(){
-       console.log("before ajax call to Test/index")
-       let path ="index";
-       let data ="";
-       $.ajax({
-           url: this.HostUrl+ '/' +"Test" + '/'+path,
-           dataType: 'json',
-           type: 'GET',
-           success: function (response) {
-               data = response;
-           }
-       });
-       return data;
+       alert("Hello");
    }
     getPosts(){
        let data="";
-        let path ="getAllPosts";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/' +path,
+            url: api.HostUrl+ '/' +api.Controller+ '/'+api.getPosts,
             dataType: 'json',
             type: 'GET',
             success: function (response) {
@@ -106,9 +93,8 @@ class Post {
 
     createPost(msg){
         let data="";
-        var path ="messagePost";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            url: api.HostUrl+ '/' +api.Controller+ '/'+api.createPost,
             dataType: 'json',
             data: {TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
             ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
@@ -122,9 +108,8 @@ class Post {
     }
     getPost(){
         let data="";
-        var path ="";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            url: api.HostUrl+ '/' +api.Controller+ '/'+api.getPost,
             dataType: 'json',
             data: {team_id:"c9fshi7c5brn7fq5saqf35xtsy",channel_id,post_id},
             type: 'POST',
@@ -136,9 +121,8 @@ class Post {
     }
     getPostsSinceTime(){
         let data="";
-        var path ="getPostSinceATime";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            url: api.HostUrl+ '/' +api.Controller+ '/'+api.getPostsSinceTime,
             dataType: 'json',
             data: {team_id:"c9fshi7c5brn7fq5saqf35xtsy",channel_id:"6cjbxemczff4bp3h68gkhcmwty",time:"1487570944617" },
             type: 'POST',
@@ -150,9 +134,8 @@ class Post {
     }
     getPostsAfterPost(){
         let data="";
-        var path ="postsAfterPost";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            url: api.HostUrl+ '/' +api.Controller+ '/'+api.getPostsAfterPost,
             dataType: 'json',
             data: {team_id:"c9fshi7c5brn7fq5saqf35xtsy",channel_id:"6cjbxemczff4bp3h68gkhcmwty",post_id:"12345",offset:"slkjsdf",limit},
             type: 'POST',
