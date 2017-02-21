@@ -30,9 +30,10 @@ class Teams{
         var api = new API();
     }
     getTeams() {
-
+        var data = "";
+        var path = "";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/'+api.getTeams,
+            url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
             type: 'GET',
             success: function (response) {
@@ -93,7 +94,7 @@ class Post {
        let data="";
         let path ="getAllPosts";
         $.ajax({
-            url: this.HostUrl+ '/' +this.Controller + '/'+path,
+            url: this.HostUrl+ '/' +this.Controller + '/' +path,
             dataType: 'json',
             type: 'GET',
             success: function (response) {
@@ -147,9 +148,9 @@ class Post {
         });
         return data;
     }
-    getPostsBeforePost(){
+    getPostsAfterPost(){
         let data="";
-        var path ="";
+        var path ="postsAfterPost";
         $.ajax({
             url: this.HostUrl+ '/' +this.Controller + '/'+path,
             dataType: 'json',
