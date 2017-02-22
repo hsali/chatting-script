@@ -149,75 +149,15 @@ $(document).ready(function() {
        getPostsSinceTime(time);*/
       let text = $input.val();
       messenger.send(text);
+      create_Post(text);
       $input.val('');
-      try {
-          let pos = new Post();
-          let afterpost = pos.getPostsAfterPost();
-          let after_posts = JSON.parse(afterpost);
-          let after_orders = after_posts.order;
-          let rev_afterorders = after_orders.reverse();
-          let post_items = after_posts.posts;
-          let i = 0;
-          console.log("posts" + post_items);
-          console.log("orders" + rev_afterorders);
-          console.log("message: " + post_items[rev_afterorders[0]].message);
-          console.log("testing");
-          while (i < rev_afterorders.length) {
-              let message = post_items[rev_afterorders[i]].message;
-              setTimeout(() => {
-                  console.log(message);
-                  messenger.recieve(message);
-              }, (i * 500 + 1000));
-              i++;
-          }
-          last_post_id = after_orders[length].id;
-          console.log(last_post_id);
-      }catch (e){
-          console.log("not calling" +e.message);
-      }
+      getPosts_After_Post();
       $input.focus();
   }
-
   messenger.onSend = buildSent;
-
   messenger.onRecieve = buildRecieved;
     console.log("before calling");
-    try{
-        let pos = new Post();
-        let getallposts = pos.getPosts();
-        let posts_data = JSON.parse(getallposts);
-        let posts_orders = posts_data.order;
-        let rev_posts_orders = posts_orders.reverse();
-        let post_items = posts_data.posts;
-        let i = 0, gid = "";
-        console.log("posts" + post_items);
-        console.log("orders" + rev_posts_orders);
-        console.log("message: " + post_items[rev_posts_orders[0]].message);
-        while (i < rev_posts_orders.length) {
-            let message = post_items[rev_posts_orders[i]].message;
-            gid = post_items[rev_posts_orders[i]].id;
-            console.log(gid);
-            if (gid === current_user_id) {
-                setTimeout(() => {
-                    console.log(message);
-                    messenger.send(message);
-                }, (i * 500 + 500));
-            }
-            else {
-                setTimeout(() => {
-                    console.log(message);
-                    messenger.recieve(message);
-                }, (i * 500 + 500));
-            }
-            i++;
-        }
-        // @todo fix the last post id
-        last_post_id = posts_orders[0].id;
-        console.log(last_post_id);
-    }catch (e){
-        console.log("not calling" +e.message);
-    }
-
+    get_All_Posts();
   $input.focus();
   $send.on('click', function(e) {
     sendMessage();
@@ -233,8 +173,92 @@ $(document).ready(function() {
     }
   });
 
-//--------------Classes---------------------------------------------------------------------------
+//==============Functions=========================================================================
+   function get_All_Posts () {
+       try{
+           let pos = new Post();
+           let getallposts = pos.getPosts();
+           let posts_data = JSON.parse(getallposts);
+           let posts_orders = posts_data.order;
+           let rev_posts_orders = posts_orders.reverse();
+           let post_items = posts_data.posts;
+           let i = 0, gid = "";
+           console.log("posts" + post_items);
+           console.log("orders" + rev_posts_orders);
+           console.log("message: " + post_items[rev_posts_orders[0]].message);
+           while (i < rev_posts_orders.length) {
+               let message = post_items[rev_posts_orders[i]].message;
+               gid = post_items[rev_posts_orders[i]].id;
+               console.log(gid);
+               filter(message,gid);
+               i++;
+           }
+           // @todo fix the last post id
+           last_post_id = posts_orders[0].id;
+           console.log(last_post_id);
+       }catch (e){
+           console.log("not calling" +e.message);
+       }
 
+   }
+        //==============================================
+    function filter(message,gid) {
+        if (gid == current_user_id) {
+            setTimeout(() => {
+                console.log(message);
+                messenger.send(message);
+            }, (i * 500 + 500));
+        }
+        else {
+            setTimeout(() => {
+                console.log(message);
+                messenger.recieve(message);
+            }, (i * 500 + 500));
+        }
+        
+    }
+        //==============================================
+    function create_Post(msg){
+       let msg = msg;
+        try {
+            let pos = new Post();
+            pos.createPost(msg);
+        }catch (e){
+            console.log("message not created" + e.message);
+        }
+        
+    }
+        //==============================================
+    function getPosts_After_Post() {
+        try {
+            let pos = new Post();
+            let afterpost = pos.getPostsAfterPost();
+            let after_posts = JSON.parse(afterpost);
+            let after_orders = after_posts.order;
+            let rev_afterorders = after_orders.reverse();
+            let post_items = after_posts.posts;
+            let i = 0;
+            console.log("posts" + post_items);
+            console.log("orders" + rev_afterorders);
+            console.log("message: " + post_items[rev_afterorders[0]].message);
+            console.log("testing");
+            while (i < rev_afterorders.length) {
+                let message = post_items[rev_afterorders[i]].message;
+                setTimeout(() => {
+                    console.log(message);
+                    messenger.recieve(message);
+                }, (i * 500 + 1000));
+                i++;
+            }
+            last_post_id = after_orders[length].id;
+            console.log(last_post_id);
+        } catch (e) {
+            console.log("not calling" + e.message);
+        }
+    }
+        //==============================================
+
+//==============Classes===========================================================================
     class Post {
         getPosts() {
             let data = "";
@@ -248,6 +272,26 @@ $(document).ready(function() {
             });
             return data;
         }
+
+        createPost(msg){
+            var chatObj = {
+                TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
+                ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
+                Message: "Hello World"
+            };
+            let data="";
+            $.ajax({
+                url:HostUrl+'/MattermostApi/createPost',
+                dataType: 'json',
+                data: JSON.stringify(chatObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+            return data;
+        }
+
         getPostsAfterPost(){
             var chatObj = {
                 TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
@@ -267,6 +311,7 @@ $(document).ready(function() {
             return data;
         }
     }
+
 });
 
 
