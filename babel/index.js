@@ -1,5 +1,6 @@
 $(window).load(function () {
-    //let access_users = new accessUsers();
+    let api = new API();
+    let access_Users = "";
     let HostUrl = "http://localhost:51916";
     let last_post_id = "";
     let last_Post_time = "";
@@ -94,6 +95,8 @@ $(window).load(function () {
     }
 
     $(document).ready(function () {
+        let pos = new post();
+         access_Users = pos.accessUsers();
         //let c_user = new c_etuser();
         let current_user_id = "izjagsd9zty15by5cq6xh4xm8o";
         let messenger = new Messenger();
@@ -275,7 +278,7 @@ $(window).load(function () {
             getPosts() {
                 let data = "";
                 $.ajax({
-                    url: HostUrl + '/MattermostApi/getAllPosts',
+                    url: api.HostUrl + '/'+api.Controller+'/getAllPosts',
                     dataType: 'json',
                     type: 'GET',
                     success: function (response) {
@@ -293,7 +296,7 @@ $(window).load(function () {
                 };
                 let data = "";
                 $.ajax({
-                    url: HostUrl + '/MattermostApi/createPost',
+                    url: api.HostUrl + '/'+api.Controller+'/createPost',
                     dataType: 'json',
                     data: JSON.stringify(chatObj),
                     type: 'POST',
@@ -312,7 +315,7 @@ $(window).load(function () {
                 };
                 let data = "";
                 $.ajax({
-                    url: HostUrl + '/MattermostApi/postsAfterPost',
+                    url: api.HostUrl + '/'+api.Controller+'/postsAfterPost',
                     dataType: 'json',
                     data: JSON.stringify(chatObj),
                     type: 'POST',
@@ -321,6 +324,86 @@ $(window).load(function () {
                     }
                 });
                 return data;
+            }
+
+            accessUsers() {
+                let data = "";
+                $.ajax({
+                    url: api.HostUrl + '/'+api.Controller+'/getAllPosts',
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (response) {
+                        data = response;
+                    }
+                });
+                return data;
+            }
+            teamsObject() {
+            var chatObj = {
+                TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
+                ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
+                CurrentChannel: "7fq5saqf35xt"
+            };
+            let data = "";
+            $.ajax({
+                url: api.HostUrl + '/'+api.Controller+'/teamsObject',
+                dataType: 'json',
+                data: JSON.stringify(chatObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+            return data;
+        }
+
+            mmc_activeChatDetail() {
+                var chatObj = {
+                    TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
+                    ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
+                    Users: "['']",
+                    last_post_id: "",
+                    last_Post_time:"",
+                    ChannelType:"",
+                };
+                let data = "";
+                $.ajax({
+                    url: api.HostUrl + '/'+api.Controller+'/mmc_activeChatDetail',
+                    dataType: 'json',
+                    data: JSON.stringify(chatObj),
+                    type: 'POST',
+                    success: function (response) {
+                        data = response;
+                    }
+                });
+                return data;
+            }
+
+        }
+        class API{
+            constructor(){
+                this.HostUrl = "http://localhost:51916"
+                this.Controller = "MattermostApi";
+                //For Team
+                this.getTeams = "getallTeams";
+                this.getTeamObject = "";
+                this.getTeamMembers = "";
+                //For Post
+                this.createPost = "messagePost";
+                this.getPosts = "getAllPosts";
+                this.getPost = "";
+                this.getPostsSinceTime = "getPostSinceATime";
+                this.getPostsAfterPost = "postsAfterPost";
+                this.getReactionsToPost = "";
+                //For Channel
+                this.getChannels ="";
+                this.getChannel = "";
+                this.getChannelByName = "";
+                this.creatChannel = "";
+                //For User
+                this.getUsers = "";
+                this.searchUsers = "";
+                this.getUsersInChannel= "";
             }
         }
 
