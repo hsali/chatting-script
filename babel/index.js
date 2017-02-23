@@ -1,7 +1,6 @@
-$(window).load(function () {
-    let api = new API();
+
+
     let access_Users = "";
-    let HostUrl = "http://localhost:51916";
     let last_post_id = "";
     let last_Post_time = "";
     class Messenger {
@@ -95,8 +94,116 @@ $(window).load(function () {
     }
 
     $(document).ready(function () {
-        let pos = new post();
-         access_Users = pos.accessUsers();
+
+        let chatObj = {
+            TeamId: "far4p4m9njy98mspcnh7fbqish",
+            ChannelId: "7be7n47oqpb9tk41zu8encipey",
+            CurrentChannel: "7be7n47oqpb9tk41zu8encipey"
+        };
+        let activeChatDetailobj = {
+            Team: {
+                id: "far4p4m9njy98mspcnh7fbqish",
+                display_name: "ai",
+                name: "ai",
+                description: "",
+                email: "shehbaz.bsee1395@gmail.com",
+                type: "O",
+                company_name: "",
+                invite_id: "59dz6oygabfq589gc9ehh8nigy",
+                allow_open_invite: false
+            },
+            Channels: [
+                {
+                    id: "drp7mzbz87b5jx4qam7kx817so",
+                    create_at: 1486377235663,
+                    team_id: "far4p4m9njy98mspcnh7fbqish",
+                    type: "P",
+                    display_name: "Bugs",
+                    name: "bugs",
+                    purpose: "private group chatting header",
+                    last_post_at: 1486377246364,
+                    creator_id: "1o46dhhacfnk9r1uayubq9mpic"
+                },
+                {
+                    id: "7be7n47oqpb9tk41zu8encipey",
+                    create_at: 1486362822638,
+                    team_id: "far4p4m9njy98mspcnh7fbqish",
+                    type: "O",
+                    display_name: "Off-Topic",
+                    name: "off-topic",
+                    last_post_at: 1487841552187,
+                    creator_id: ""
+                }
+            ],
+            Users: {
+                "1o46dhhacfnk9r1uayubq9mpic": {
+                    id: "1o46dhhacfnk9r1uayubq9mpic",
+                    create_at: 1486370521589,
+                    username: "imad",
+                    email: "hamadkhankhel@gmail.com",
+                },
+                "aqbots94s3f1dfkj77bj8s8qcw": {
+                    id: "aqbots94s3f1dfkj77bj8s8qcw",
+                    create_at: 1486463610070,
+                    username: "mahmoodch107",
+                    email: "mahmoodch107@gmail.com",
+                },
+
+            },
+        };
+        let userobj = {
+            Teams: {
+                "far4p4m9njy98mspcnh7fbqish": {
+                    id: "far4p4m9njy98mspcnh7fbqish",
+                    create_at: 1486362822629,
+                    display_name: "ai",
+                    name: "ai",
+                    description: "",
+                    email: "shehbaz.bsee1395@gmail.com",
+                    type: "O",
+                    invite_id: "59dz6oygabfq589gc9ehh8nigy",
+                    allow_open_invite: false
+                },
+                "kgrwcfe9opdmdb6jc4b1jn4hhh": {
+                    id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
+                    create_at: 1486464222877,
+                    update_at: 1486464222877,
+                    display_name: "frontend",
+                    name: "frontend",
+                    description: "",
+                    email: "mahmoodch107@gmail.com",
+                    type: "O",
+                    invite_id: "tbjwwyx8f7d19b8ix98y38ca8a",
+                    allow_open_invite: false
+                },
+            },
+            Self: "",
+            Channels: [
+                {
+                    id: "7be7n47oqpb9tk41zu8encipey",
+                    create_at: 1486362822638,
+                    team_id: "far4p4m9njy98mspcnh7fbqish",
+                    type: "O",
+                    display_name: "Off-Topic",
+                    name: "off-topic",
+                    last_post_at: 1487841552187,
+                    creator_id: "",
+                },
+                {
+                    id: "tohoobbjpf88pft5upfjdnjx5a",
+                    create_at: 1486362822632,
+                    team_i: "far4p4m9njy98mspcnh7fbqish",
+                    type: "O",
+                    display_name: "Town Square",
+                    name: "town-square",
+                    last_post_at: 1487333018071,
+                    creator_id: ""
+                }
+            ],
+        };
+        let pos = new Post();
+        let api = new API();
+        access_Users = pos.accessUsers();
         //let c_user = new c_etuser();
         let current_user_id = "izjagsd9zty15by5cq6xh4xm8o";
         let messenger = new Messenger();
@@ -158,7 +265,7 @@ $(window).load(function () {
 
             setInterval(() => {
                 getPosts_After_Post();
-            }, 5000 );
+            }, 5000);
 
             $input.focus();
         }
@@ -198,14 +305,13 @@ $(window).load(function () {
                 while (i < rev_posts_orders.length) {
                     let message = post_items[rev_posts_orders[i]].message;
                     gid = post_items[rev_posts_orders[i]].id;
-                    last_Post_time = post_items[rev_posts_orders[i]].create_at;
                     console.log(gid);
-                    console.log(last_Post_time);
                     filter(message, gid);
                     i++;
                 }
                 // @todo fix the last post id
                 last_post_id = posts_orders[0].id;
+                last_Post_time = post_items[0].create_at;
                 console.log(last_post_id);
             } catch (e) {
                 console.log("not calling" + e.message);
@@ -265,6 +371,7 @@ $(window).load(function () {
                     i++;
                 }
                 last_post_id = (after_orders.length).id;
+                last_Post_time = (post_items.length).create_at;
                 console.log(last_post_id);
             } catch (e) {
                 console.log("not calling" + e.message);
@@ -273,12 +380,14 @@ $(window).load(function () {
 
         //==============================================
 
-//==============Classes===========================================================================
+   });
+    //============================-Classes-===========================================================
+
         class Post {
             getPosts() {
                 let data = "";
                 $.ajax({
-                    url: api.HostUrl + '/'+api.Controller+'/getAllPosts',
+                    url: api.HostUrl + '/' + api.Controller + '/getAllPosts',
                     dataType: 'json',
                     type: 'GET',
                     success: function (response) {
@@ -289,14 +398,14 @@ $(window).load(function () {
             }
 
             createPost(msg) {
-                var chatObj = {
+                let chatObj = {
                     TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
                     ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
                     Message: "Hello World"
                 };
                 let data = "";
                 $.ajax({
-                    url: api.HostUrl + '/'+api.Controller+'/createPost',
+                    url: api.HostUrl + '/' + api.Controller + '/createPost',
                     dataType: 'json',
                     data: JSON.stringify(chatObj),
                     type: 'POST',
@@ -308,14 +417,14 @@ $(window).load(function () {
             }
 
             getPostsAfterPost() {
-                var chatObj = {
+                let chatObj = {
                     TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
                     ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
                     post_id: "6cjbxemczff4bp3h68gkhc",
                 };
                 let data = "";
                 $.ajax({
-                    url: api.HostUrl + '/'+api.Controller+'/postsAfterPost',
+                    url: api.HostUrl + '/' + api.Controller + '/postsAfterPost',
                     dataType: 'json',
                     data: JSON.stringify(chatObj),
                     type: 'POST',
@@ -329,7 +438,7 @@ $(window).load(function () {
             accessUsers() {
                 let data = "";
                 $.ajax({
-                    url: api.HostUrl + '/'+api.Controller+'/getAllPosts',
+                    url: api.HostUrl + '/' + api.Controller + '/getAllPosts',
                     dataType: 'json',
                     type: 'GET',
                     success: function (response) {
@@ -338,48 +447,8 @@ $(window).load(function () {
                 });
                 return data;
             }
-            teamsObject() {
-            var chatObj = {
-                TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
-                ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
-                CurrentChannel: "7fq5saqf35xt"
-            };
-            let data = "";
-            $.ajax({
-                url: api.HostUrl + '/'+api.Controller+'/teamsObject',
-                dataType: 'json',
-                data: JSON.stringify(chatObj),
-                type: 'POST',
-                success: function (response) {
-                    data = response;
-                }
-            });
-            return data;
         }
 
-            mmc_activeChatDetail() {
-                var chatObj = {
-                    TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
-                    ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
-                    Users: "['']",
-                    last_post_id: "",
-                    last_Post_time:"",
-                    ChannelType:"",
-                };
-                let data = "";
-                $.ajax({
-                    url: api.HostUrl + '/'+api.Controller+'/mmc_activeChatDetail',
-                    dataType: 'json',
-                    data: JSON.stringify(chatObj),
-                    type: 'POST',
-                    success: function (response) {
-                        data = response;
-                    }
-                });
-                return data;
-            }
-
-        }
         class API{
             constructor(){
                 this.HostUrl = "http://localhost:51916"
@@ -406,6 +475,3 @@ $(window).load(function () {
                 this.getUsersInChannel= "";
             }
         }
-
-    });
-});
