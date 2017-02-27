@@ -114,42 +114,47 @@
             return this._build(text, 'them');
         }
     }
+    function initiate() {
+        defaultTeamId = "far4p4m9njy98mspcnh7fbqish";
+            isTeamExist(defaultTeamId);
+        /*let arr = [];
+        for (let tem in teams) {
+            arr.push(teams[tem]);
+        }
+        activeChatDetailObj = arr;*/
+            let activeChatDetailObj = {
+                team: {
+                    id: "far4p4m9njy98mspcnh7fbqish",
+                    display_name: "ai",
+                    name: "ai",
+                    description: "",
+                    email: "shehbaz.bsee1395@gmail.com",
+                    type: "O",
+                    company_name: "",
+                    invite_id: "59dz6oygabfq589gc9ehh8nigy",
+                    allow_open_invite: false
+                },
+                channel: {
+                    id: "drp7mzbz87b5jx4qam7kx817so",
+                    create_at: 1486377235663,
+                    team_id: "far4p4m9njy98mspcnh7fbqish",
+                    type: "P",
+                    display_name: "Bugs",
+                    name: "bugs",
+                    purpose: "private group chatting header",
+                    last_post_at: 1486377246364,
+                    creator_id: "1o46dhhacfnk9r1uayubq9mpic"
+                },
 
-    let activeChatDetailObj = {
-        team: {
-            id: "far4p4m9njy98mspcnh7fbqish",
-            display_name: "ai",
-            name: "ai",
-            description: "",
-            email: "shehbaz.bsee1395@gmail.com",
-            type: "O",
-            company_name: "",
-            invite_id: "59dz6oygabfq589gc9ehh8nigy",
-            allow_open_invite: false
-        },
-        channels:
-            {
-                id: "drp7mzbz87b5jx4qam7kx817so",
-                create_at: 1486377235663,
-                team_id: "far4p4m9njy98mspcnh7fbqish",
-                type: "P",
-                display_name: "Bugs",
-                name: "bugs",
-                purpose: "private group chatting header",
-                last_post_at: 1486377246364,
-                creator_id: "1o46dhhacfnk9r1uayubq9mpic"
-            },
-
-        users: {
-                id: "1o46dhhacfnk9r1uayubq9mpic",
-                create_at: 1486370521589,
-                username: "imad",
-                email: "hamadkhankhel@gmail.com",
-            },
-    };
-    let userObj = {
-        teams: {
-            "far4p4m9njy98mspcnh7fbqish": {
+                user: {
+                    id: "1o46dhhacfnk9r1uayubq9mpic",
+                    create_at: 1486370521589,
+                    username: "imad",
+                    email: "hamadkhankhel@gmail.com",
+                },
+            };
+        let userDetailObj = {
+            team: {
                 id: "far4p4m9njy98mspcnh7fbqish",
                 create_at: 1486362822629,
                 display_name: "ai",
@@ -160,38 +165,26 @@
                 invite_id: "59dz6oygabfq589gc9ehh8nigy",
                 allow_open_invite: false
             },
-            "kgrwcfe9opdmdb6jc4b1jn4hhh": {
-                id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
-                create_at: 1486464222877,
-                update_at: 1486464222877,
-                display_name: "frontend",
-                name: "frontend",
-                description: "",
-                email: "mahmoodch107@gmail.com",
+            channel: {
+                id: "7be7n47oqpb9tk41zu8encipey",
+                create_at: 1486362822638,
+                team_id: "far4p4m9njy98mspcnh7fbqish",
                 type: "O",
-                invite_id: "tbjwwyx8f7d19b8ix98y38ca8a",
-                allow_open_invite: false
+                display_name: "Off-Topic",
+                name: "off-topic",
+                last_post_at: 1487841552187,
+                creator_id: "",
             },
-        },
-        self: {
-            id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
-            create_at: 1486362822629,
-            display_name: "mahmood",
-            name: "mahmood",
-            email: "shehbaz.bsee1395@gmail.com",
-            type: "O",
-        },
-        channels: {
-            id: "7be7n47oqpb9tk41zu8encipey",
-            create_at: 1486362822638,
-            team_id: "far4p4m9njy98mspcnh7fbqish",
-            type: "O",
-            display_name: "Off-Topic",
-            name: "off-topic",
-            last_post_at: 1487841552187,
-            creator_id: "",
-        },
-    };
+            self: {
+                id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
+                create_at: 1486362822629,
+                display_name: "mahmood",
+                name: "mahmood",
+                email: "shehbaz.bsee1395@gmail.com",
+                type: "O",
+            },
+        };
+    }
 
     $(document).ready(function () {
 
@@ -278,6 +271,16 @@
         });
 
 //==============Functions===========================================================================
+        function isTeamExist(defaultT_Id){
+            teams = getTeams();
+            let tem;
+            for (tem in teams) {
+                if (defaultT_Id == teams[tem]) {
+                    break;
+                }
+            }
+            activeChatDetailObj.team = teams[tem];
+        }
         function get_All_Posts() {
             try {
                 let posts_data = JSON.parse(getPosts());
@@ -364,8 +367,8 @@
 //============================-Classes-===========================================================
         function getAllPosts() {
             let getAllPostsObj = {
-                teamId: activeChatDetailObj.team.id,
-                channelId: activeChatDetailObj.channels.id,
+                teamId: initiate(activeChatDetailObj.team.id),
+                channelId: initiate(activeChatDetailObj.channel.id),
             };
             let data = "";
             $.ajax({
@@ -383,7 +386,7 @@
         function createPost(msg) {
             let createPostObj = {
                 teamId: activeChatDetailObj.team.id,
-                thannelId: activeChatDetailObj.Channels.id,
+                thannelId: activeChatDetailObj.channel.id,
                 message: msg,
             };
             let data = "";
@@ -401,8 +404,8 @@
 
         function getPostsAfterPost() {
             let getPostsAfterPostObj = {
-                teamId: userobj.Teams.far4p4m9njy98mspcnh7fbqish.id,
-                channelId: userobj.Channels.id,
+                teamId: activeChatDetailObj.team.id,
+                channelId:activeChatDetailObj.channel.id,
                 post_id: last_post_id,
                 offset:0,
                 limit:10,
@@ -422,8 +425,8 @@
 
         function getPostsSinceTime(){
             let getPostsSinceTimeObj = {
-                teamId: userobj.Teams.far4p4m9njy98mspcnh7fbqish.id,
-                channelId: userobj.Channels.id,
+                teamId: activeChatDetailObj.team.id,
+                channelId:activeChatDetailObj.channel.id,
             };
             let data = "";
             $.ajax({
@@ -452,8 +455,8 @@
             }
 
         function getTeamMembers(){
-            let getTeamObj = {
-                TeamId: userobj.Teams.far4p4m9njy98mspcnh7fbqish.id,
+            let getTeamMembersObj = {
+                TeamId: userobj.Teams.id,
                 Offset:0,
                 Limit:10,
             };
@@ -484,10 +487,7 @@
             });
             return data;
         }
-        function initiate( ) {
 
-
-        }
         console.log("Inside the function "+userobj)
 
     });
