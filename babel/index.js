@@ -116,7 +116,9 @@
     }
     function initiate() {
         defaultTeamId = "far4p4m9njy98mspcnh7fbqish";
+        defaultChannelId = "drp7mzbz87b5jx4qam7kx817so";
             isTeamExist(defaultTeamId);
+            isChannelExist(defaultChannelId);
         /*let arr = [];
         for (let tem in teams) {
             arr.push(teams[tem]);
@@ -272,7 +274,7 @@
 
 //==============Functions===========================================================================
         function isTeamExist(defaultT_Id){
-            teams = getTeams();
+            let teams = getTeams();
             let tem;
             for (tem in teams) {
                 if (defaultT_Id == teams[tem]) {
@@ -280,6 +282,18 @@
                 }
             }
             activeChatDetailObj.team = teams[tem];
+        }
+        function isChannelExist(defaultC_Id){
+            let channels = getChannels();
+            let chan;
+            for(chan in channels){
+                console.log(channels[chan].id);
+                if (defaultC_Id == channels[chan].id) {
+                    break;
+                }
+            }
+            activeChatDetailObj.channel = channels[chan];
+            console.log(channels[chan]);
         }
         function get_All_Posts() {
             try {
@@ -367,8 +381,8 @@
 //============================-Classes-===========================================================
         function getAllPosts() {
             let getAllPostsObj = {
-                teamId: initiate(activeChatDetailObj.team.id),
-                channelId: initiate(activeChatDetailObj.channel.id),
+                teamId: activeChatDetailObj.team.id,
+                channelId: activeChatDetailObj.channel.id,
             };
             let data = "";
             $.ajax({
@@ -456,9 +470,9 @@
 
         function getTeamMembers(){
             let getTeamMembersObj = {
-                TeamId: userobj.Teams.id,
-                Offset:0,
-                Limit:10,
+                teamId: activeChatDetailObj.team.id,
+                offset:0,
+                limit:10,
             };
             let data = "";
             $.ajax({
@@ -472,23 +486,100 @@
             });
             return data;
         }
-
-
-
-        function accessUsers() {
+//============Channels==========================
+       function getChannels() {
+           let getChannelsObj = {
+               teamId: activeChatDetailObj.team.id,
+               channelId: activeChatDetailObj.channel.id,
+           };
+           let data = "";
+           $.ajax({
+               url: HostUrl + '/' + Controller + '/getteammembers',
+               dataType: 'JSON',
+               data: JSON.stringify(getChannelsObj),
+               type: 'POST',
+               success: function (response) {
+                   data = response;
+               }
+           });
+       }
+            function getChannel() {
+            let getChannelobj = {
+                teamId: activeChatDetailObj.team.id,
+                channelId: activeChatDetailObj.channel.id,
+            };
             let data = "";
             $.ajax({
-                url: HostUrl + '/' + Controller + '/getAllPosts',
+                url: HostUrl + '/' + Controller + '/getteammembers',
                 dataType: 'JSON',
-                type: 'GET',
+                data: JSON.stringify(getChannelobj),
+                type: 'POST',
                 success: function (response) {
                     data = response;
                 }
             });
-            return data;
         }
-
-        console.log("Inside the function "+userobj)
+            function creatChannel(){
+            let creatChannelObj = {
+                teamId: activeChatDetailObj.team.id,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/getteammembers',
+                dataType: 'JSON',
+                data: JSON.stringify(creatChannelObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+        }
+            function viewChannel(){
+            let viewChannelObj = {
+                teamId: activeChatDetailObj.team.id,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/getteammembers',
+                dataType: 'JSON',
+                data: JSON.stringify(viewChannelObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+        }
+            function getchannelsforUser(){
+            let getchannelsforUserObj = {
+                teamId: activeChatDetailObj.team.id,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/getteammembers',
+                dataType: 'JSON',
+                data: JSON.stringify(getchannelsforUserObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+        }
+            function getChannelByName(){
+            let getChannelByNameObj = {
+                teamId: activeChatDetailObj.team.id,
+                channelId:activeChatDetailObj.team.id,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/getteammembers',
+                dataType: 'JSON',
+                data: JSON.stringify(getChannelByNameObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+        }
 
     });
     console.log("Outside the function "+userobj)
