@@ -1,8 +1,30 @@
 
 
+    let HostUrl = "http://localhost:51916"
+    let Controller = "MattermostApi";
+    //For Team
+    let getTeams = "getallTeams";
+    let getTeamObject = "";
+    let getTeamMembers = "";
+    //For Post
+    let createPost = "messagePost";
+    let getPosts = "getAllPosts";
+    let getPost = "";
+    let getPostsAfterPost = "postsAfterPost";
+    let getReactionsToPost = "";
+    //For Channel
+    let getChannels = "";
+    let getChannel = "";
+    let getChannelByName = "";
+    let creatChannel = "";
+    //For User
+    let getUsers = "";
+    let searchUsers = "";
+    let getUsersInChannel = "";
     let access_Users = "";
     let last_post_id = "";
     let last_Post_time = "";
+//============================================================================================
     class Messenger {
         constructor() {
             this.messageList = [];
@@ -93,119 +115,87 @@
         }
     }
 
-    $(document).ready(function () {
+    let activeChatDetailObj = {
+        team: {
+            id: "far4p4m9njy98mspcnh7fbqish",
+            display_name: "ai",
+            name: "ai",
+            description: "",
+            email: "shehbaz.bsee1395@gmail.com",
+            type: "O",
+            company_name: "",
+            invite_id: "59dz6oygabfq589gc9ehh8nigy",
+            allow_open_invite: false
+        },
+        channels:
+            {
+                id: "drp7mzbz87b5jx4qam7kx817so",
+                create_at: 1486377235663,
+                team_id: "far4p4m9njy98mspcnh7fbqish",
+                type: "P",
+                display_name: "Bugs",
+                name: "bugs",
+                purpose: "private group chatting header",
+                last_post_at: 1486377246364,
+                creator_id: "1o46dhhacfnk9r1uayubq9mpic"
+            },
 
-        let chatObj = {
-            TeamId: "far4p4m9njy98mspcnh7fbqish",
-            ChannelId: "7be7n47oqpb9tk41zu8encipey",
-            CurrentChannel: "7be7n47oqpb9tk41zu8encipey"
-        };
-        let activeChatDetailobj = {
-            Team: {
+        users: {
+                id: "1o46dhhacfnk9r1uayubq9mpic",
+                create_at: 1486370521589,
+                username: "imad",
+                email: "hamadkhankhel@gmail.com",
+            },
+    };
+    let userObj = {
+        teams: {
+            "far4p4m9njy98mspcnh7fbqish": {
                 id: "far4p4m9njy98mspcnh7fbqish",
+                create_at: 1486362822629,
                 display_name: "ai",
                 name: "ai",
                 description: "",
                 email: "shehbaz.bsee1395@gmail.com",
                 type: "O",
-                company_name: "",
                 invite_id: "59dz6oygabfq589gc9ehh8nigy",
                 allow_open_invite: false
             },
-            Channels: [
-                {
-                    id: "drp7mzbz87b5jx4qam7kx817so",
-                    create_at: 1486377235663,
-                    team_id: "far4p4m9njy98mspcnh7fbqish",
-                    type: "P",
-                    display_name: "Bugs",
-                    name: "bugs",
-                    purpose: "private group chatting header",
-                    last_post_at: 1486377246364,
-                    creator_id: "1o46dhhacfnk9r1uayubq9mpic"
-                },
-                {
-                    id: "7be7n47oqpb9tk41zu8encipey",
-                    create_at: 1486362822638,
-                    team_id: "far4p4m9njy98mspcnh7fbqish",
-                    type: "O",
-                    display_name: "Off-Topic",
-                    name: "off-topic",
-                    last_post_at: 1487841552187,
-                    creator_id: ""
-                }
-            ],
-            Users: {
-                "1o46dhhacfnk9r1uayubq9mpic": {
-                    id: "1o46dhhacfnk9r1uayubq9mpic",
-                    create_at: 1486370521589,
-                    username: "imad",
-                    email: "hamadkhankhel@gmail.com",
-                },
-                "aqbots94s3f1dfkj77bj8s8qcw": {
-                    id: "aqbots94s3f1dfkj77bj8s8qcw",
-                    create_at: 1486463610070,
-                    username: "mahmoodch107",
-                    email: "mahmoodch107@gmail.com",
-                },
+            "kgrwcfe9opdmdb6jc4b1jn4hhh": {
+                id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
+                create_at: 1486464222877,
+                update_at: 1486464222877,
+                display_name: "frontend",
+                name: "frontend",
+                description: "",
+                email: "mahmoodch107@gmail.com",
+                type: "O",
+                invite_id: "tbjwwyx8f7d19b8ix98y38ca8a",
+                allow_open_invite: false
+            },
+        },
+        self: {
+            id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
+            create_at: 1486362822629,
+            display_name: "mahmood",
+            name: "mahmood",
+            email: "shehbaz.bsee1395@gmail.com",
+            type: "O",
+        },
+        channels: {
+            id: "7be7n47oqpb9tk41zu8encipey",
+            create_at: 1486362822638,
+            team_id: "far4p4m9njy98mspcnh7fbqish",
+            type: "O",
+            display_name: "Off-Topic",
+            name: "off-topic",
+            last_post_at: 1487841552187,
+            creator_id: "",
+        },
+    };
 
-            },
-        };
-        let userobj = {
-            Teams: {
-                "far4p4m9njy98mspcnh7fbqish": {
-                    id: "far4p4m9njy98mspcnh7fbqish",
-                    create_at: 1486362822629,
-                    display_name: "ai",
-                    name: "ai",
-                    description: "",
-                    email: "shehbaz.bsee1395@gmail.com",
-                    type: "O",
-                    invite_id: "59dz6oygabfq589gc9ehh8nigy",
-                    allow_open_invite: false
-                },
-                "kgrwcfe9opdmdb6jc4b1jn4hhh": {
-                    id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
-                    create_at: 1486464222877,
-                    update_at: 1486464222877,
-                    display_name: "frontend",
-                    name: "frontend",
-                    description: "",
-                    email: "mahmoodch107@gmail.com",
-                    type: "O",
-                    invite_id: "tbjwwyx8f7d19b8ix98y38ca8a",
-                    allow_open_invite: false
-                },
-            },
-            Self: "",
-            Channels: [
-                {
-                    id: "7be7n47oqpb9tk41zu8encipey",
-                    create_at: 1486362822638,
-                    team_id: "far4p4m9njy98mspcnh7fbqish",
-                    type: "O",
-                    display_name: "Off-Topic",
-                    name: "off-topic",
-                    last_post_at: 1487841552187,
-                    creator_id: "",
-                },
-                {
-                    id: "tohoobbjpf88pft5upfjdnjx5a",
-                    create_at: 1486362822632,
-                    team_i: "far4p4m9njy98mspcnh7fbqish",
-                    type: "O",
-                    display_name: "Town Square",
-                    name: "town-square",
-                    last_post_at: 1487333018071,
-                    creator_id: ""
-                }
-            ],
-        };
-        let pos = new Post();
-        let api = new API();
-        access_Users = pos.accessUsers();
+    $(document).ready(function () {
+
         //let c_user = new c_etuser();
-        let current_user_id = "izjagsd9zty15by5cq6xh4xm8o";
         let messenger = new Messenger();
         let buildHTML = new BuildHTML();
 
@@ -254,10 +244,7 @@
         }
 
         function sendMessage() {
-            /*posts since time
-             let d = new data();
-             let time = d.getTime();
-             getPostsSinceTime(time);*/
+
             let text = $input.val();
             messenger.send(text);
             create_Post(text);
@@ -273,6 +260,7 @@
         messenger.onSend = buildSent;
         messenger.onRecieve = buildRecieved;
         console.log("before calling");
+
         get_All_Posts();
         $input.focus();
         $send.on('click', function (e) {
@@ -289,24 +277,22 @@
             }
         });
 
-//==============Functions=========================================================================
+//==============Functions===========================================================================
         function get_All_Posts() {
             try {
-                let pos = new Post();
-                let getallposts = pos.getPosts();
-                let posts_data = JSON.parse(getallposts);
+                let posts_data = JSON.parse(getPosts());
                 let posts_orders = posts_data.order;
                 let rev_posts_orders = posts_orders.reverse();
                 let post_items = posts_data.posts;
-                let i = 0, gid = "";
+                let i = 0, getpost_id = "";
                 console.log("posts" + post_items);
                 console.log("orders" + rev_posts_orders);
                 console.log("message: " + post_items[rev_posts_orders[0]].message);
                 while (i < rev_posts_orders.length) {
                     let message = post_items[rev_posts_orders[i]].message;
-                    gid = post_items[rev_posts_orders[i]].id;
-                    console.log(gid);
-                    filter(message, gid);
+                    getpost_id = post_items[rev_posts_orders[i]].id;
+                    console.log(getpost_id);
+                    filter(message, getpost_id);
                     i++;
                 }
                 // @todo fix the last post id
@@ -320,8 +306,8 @@
         }
 
         //==============================================
-        function filter(message, gid) {
-            if (gid == current_user_id) {
+        function filter(message, getpost_id) {
+            if (getpost_id == userobj.Self.id) {
                 setTimeout(() => {
                     console.log(message);
                     messenger.send(message);
@@ -340,8 +326,7 @@
         function create_Post(msg) {
             let messg = msg;
             try {
-                let pos = new Post();
-                pos.createPost(messg);
+                createPost(messg);
             } catch (e) {
                 console.log("message not created" + e.message);
             }
@@ -351,9 +336,7 @@
         //==============================================
         function getPosts_After_Post() {
             try {
-                let pos = new Post();
-                let afterpost = pos.getPostsAfterPost();
-                let after_posts = JSON.parse(afterpost);
+                let after_posts = JSON.parse(getPostsAfterPost());
                 let after_orders = after_posts.order;
                 let rev_afterorders = after_orders.reverse();
                 let post_items = after_posts.posts;
@@ -378,16 +361,87 @@
             }
         }
 
-        //==============================================
+//============================-Classes-===========================================================
+        function getAllPosts() {
+            let getAllPostsObj = {
+                teamId: activeChatDetailObj.team.id,
+                channelId: activeChatDetailObj.channels.id,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/createPost',
+                dataType: 'JSON',
+                data: JSON.stringify(getAllPostsObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+            return data;
+        }
 
-   });
-    //============================-Classes-===========================================================
+        function createPost(msg) {
+            let createPostObj = {
+                teamId: activeChatDetailObj.team.id,
+                thannelId: activeChatDetailObj.Channels.id,
+                message: msg,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/createPost',
+                dataType: 'JSON',
+                data: JSON.stringify(createPostObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+            return data;
+        }
 
-        class Post {
-            getPosts() {
-                let data = "";
+        function getPostsAfterPost() {
+            let getPostsAfterPostObj = {
+                teamId: userobj.Teams.far4p4m9njy98mspcnh7fbqish.id,
+                channelId: userobj.Channels.id,
+                post_id: last_post_id,
+                offset:0,
+                limit:10,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/postsAfterPost',
+                dataType: 'JSON',
+                data: JSON.stringify(getPostsAfterPostObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+            return data;
+        }
+
+        function getPostsSinceTime(){
+            let getPostsSinceTimeObj = {
+                teamId: userobj.Teams.far4p4m9njy98mspcnh7fbqish.id,
+                channelId: userobj.Channels.id,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/getpostssincetime',
+                dataType: 'JSON',
+                data: JSON.stringify(getPostsSinceTimeObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+            return data;
+        }
+        //=========Teams==================
+        function getTeams() {
+                $data = "";
                 $.ajax({
-                    url: api.HostUrl + '/' + api.Controller + '/getAllPosts',
+                    url: HostUrl+ '/' +Controller+ '/getallTeams',
                     dataType: 'json',
                     type: 'GET',
                     success: function (response) {
@@ -397,81 +451,48 @@
                 return data;
             }
 
-            createPost(msg) {
-                let chatObj = {
-                    TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
-                    ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
-                    Message: "Hello World"
-                };
-                let data = "";
-                $.ajax({
-                    url: api.HostUrl + '/' + api.Controller + '/createPost',
-                    dataType: 'json',
-                    data: JSON.stringify(chatObj),
-                    type: 'POST',
-                    success: function (response) {
-                        data = response;
-                    }
-                });
-                return data;
-            }
-
-            getPostsAfterPost() {
-                let chatObj = {
-                    TeamId: "c9fshi7c5brn7fq5saqf35xtsy",
-                    ChannelId: "6cjbxemczff4bp3h68gkhcmwty",
-                    post_id: "6cjbxemczff4bp3h68gkhc",
-                };
-                let data = "";
-                $.ajax({
-                    url: api.HostUrl + '/' + api.Controller + '/postsAfterPost',
-                    dataType: 'json',
-                    data: JSON.stringify(chatObj),
-                    type: 'POST',
-                    success: function (response) {
-                        data = response;
-                    }
-                });
-                return data;
-            }
-
-            accessUsers() {
-                let data = "";
-                $.ajax({
-                    url: api.HostUrl + '/' + api.Controller + '/getAllPosts',
-                    dataType: 'json',
-                    type: 'GET',
-                    success: function (response) {
-                        data = response;
-                    }
-                });
-                return data;
-            }
+        function getTeamMembers(){
+            let getTeamObj = {
+                TeamId: userobj.Teams.far4p4m9njy98mspcnh7fbqish.id,
+                Offset:0,
+                Limit:10,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/getteammembers',
+                dataType: 'JSON',
+                data: JSON.stringify(getTeamMembers),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+            return data;
         }
 
-        class API{
-            constructor(){
-                this.HostUrl = "http://localhost:51916"
-                this.Controller = "MattermostApi";
-                //For Team
-                this.getTeams = "getallTeams";
-                this.getTeamObject = "";
-                this.getTeamMembers = "";
-                //For Post
-                this.createPost = "messagePost";
-                this.getPosts = "getAllPosts";
-                this.getPost = "";
-                this.getPostsSinceTime = "getPostSinceATime";
-                this.getPostsAfterPost = "postsAfterPost";
-                this.getReactionsToPost = "";
-                //For Channel
-                this.getChannels ="";
-                this.getChannel = "";
-                this.getChannelByName = "";
-                this.creatChannel = "";
-                //For User
-                this.getUsers = "";
-                this.searchUsers = "";
-                this.getUsersInChannel= "";
-            }
+
+
+        function accessUsers() {
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/getAllPosts',
+                dataType: 'JSON',
+                type: 'GET',
+                success: function (response) {
+                    data = response;
+                }
+            });
+            return data;
         }
+        function initiate( ) {
+
+
+        }
+        console.log("Inside the function "+userobj)
+
+    });
+    console.log("Outside the function "+userobj)
+
+
+
+
