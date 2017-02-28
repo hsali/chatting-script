@@ -3,27 +3,102 @@
     let HostUrl = "http://localhost:51916"
     let Controller = "MattermostApi";
     //For Team
-    let getTeams = "getallTeams";
-    let getTeamObject = "";
+    let getTeams = "GetAllTeams";
+    let getTeamObject = "GetATeamObject";
     let getTeamMembers = "";
     //For Post
-    let createPost = "messagePost";
-    let getPosts = "getAllPosts";
+    let createPost = "postMessage";
+    let getPosts = "GetAllPosts";
     let getPost = "";
     let getPostsAfterPost = "postsAfterPost";
+    let getPostsSinceTime = "GetPostSinceATime";
     let getReactionsToPost = "";
     //For Channel
     let getChannels = "";
     let getChannel = "";
-    let getChannelByName = "";
+    let getChannelByName = "GetChannelByName";
     let creatChannel = "";
     //For User
     let getUsers = "";
     let searchUsers = "";
-    let getUsersInChannel = "";
-    let access_Users = "";
+    let getUsersInChannel = "GetUsersInChannel";
+    let accessUsers = "accessUsers";
+    let getThumbnail = "getThumbnail";
     let last_post_id = "";
     let last_Post_time = "";
+    function initiate() {
+        let defaultTeamId = "far4p4m9njy98mspcnh7fbqish";
+        let defaultChannelId = "drp7mzbz87b5jx4qam7kx817so";
+        isTeamExist(defaultTeamId);
+        isChannelExist(defaultChannelId);
+        /*let arr = [];
+         for (let tem in teams) {
+         arr.push(teams[tem]);
+         }
+         activeChatDetailObj = arr;*/
+        let activeChatDetailObj = {
+            team: {
+                id: "far4p4m9njy98mspcnh7fbqish",
+                display_name: "ai",
+                name: "ai",
+                description: "",
+                email: "shehbaz.bsee1395@gmail.com",
+                type: "O",
+                company_name: "",
+                invite_id: "59dz6oygabfq589gc9ehh8nigy",
+                allow_open_invite: false
+            },
+            channel: {
+                id: "drp7mzbz87b5jx4qam7kx817so",
+                create_at: 1486377235663,
+                team_id: "far4p4m9njy98mspcnh7fbqish",
+                type: "P",
+                display_name: "Bugs",
+                name: "bugs",
+                purpose: "private group chatting header",
+                last_post_at: 1486377246364,
+                creator_id: "1o46dhhacfnk9r1uayubq9mpic"
+            },
+
+            user: {
+                id: "1o46dhhacfnk9r1uayubq9mpic",
+                create_at: 1486370521589,
+                username: "imad",
+                email: "hamadkhankhel@gmail.com",
+            },
+        };
+        let userDetailObj = {
+            team: {
+                id: "far4p4m9njy98mspcnh7fbqish",
+                create_at: 1486362822629,
+                display_name: "ai",
+                name: "ai",
+                description: "",
+                email: "shehbaz.bsee1395@gmail.com",
+                type: "O",
+                invite_id: "59dz6oygabfq589gc9ehh8nigy",
+                allow_open_invite: false
+            },
+            channel: {
+                id: "7be7n47oqpb9tk41zu8encipey",
+                create_at: 1486362822638,
+                team_id: "far4p4m9njy98mspcnh7fbqish",
+                type: "O",
+                display_name: "Off-Topic",
+                name: "off-topic",
+                last_post_at: 1487841552187,
+                creator_id: "",
+            },
+            self: {
+                id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
+                create_at: 1486362822629,
+                display_name: "mahmood",
+                name: "mahmood",
+                email: "shehbaz.bsee1395@gmail.com",
+                type: "O",
+            },
+        };
+    }
 //============================================================================================
     class Messenger {
         constructor() {
@@ -113,79 +188,6 @@
         them(text) {
             return this._build(text, 'them');
         }
-    }
-    function initiate() {
-        defaultTeamId = "far4p4m9njy98mspcnh7fbqish";
-        defaultChannelId = "drp7mzbz87b5jx4qam7kx817so";
-            isTeamExist(defaultTeamId);
-            isChannelExist(defaultChannelId);
-        /*let arr = [];
-        for (let tem in teams) {
-            arr.push(teams[tem]);
-        }
-        activeChatDetailObj = arr;*/
-            let activeChatDetailObj = {
-                team: {
-                    id: "far4p4m9njy98mspcnh7fbqish",
-                    display_name: "ai",
-                    name: "ai",
-                    description: "",
-                    email: "shehbaz.bsee1395@gmail.com",
-                    type: "O",
-                    company_name: "",
-                    invite_id: "59dz6oygabfq589gc9ehh8nigy",
-                    allow_open_invite: false
-                },
-                channel: {
-                    id: "drp7mzbz87b5jx4qam7kx817so",
-                    create_at: 1486377235663,
-                    team_id: "far4p4m9njy98mspcnh7fbqish",
-                    type: "P",
-                    display_name: "Bugs",
-                    name: "bugs",
-                    purpose: "private group chatting header",
-                    last_post_at: 1486377246364,
-                    creator_id: "1o46dhhacfnk9r1uayubq9mpic"
-                },
-
-                user: {
-                    id: "1o46dhhacfnk9r1uayubq9mpic",
-                    create_at: 1486370521589,
-                    username: "imad",
-                    email: "hamadkhankhel@gmail.com",
-                },
-            };
-        let userDetailObj = {
-            team: {
-                id: "far4p4m9njy98mspcnh7fbqish",
-                create_at: 1486362822629,
-                display_name: "ai",
-                name: "ai",
-                description: "",
-                email: "shehbaz.bsee1395@gmail.com",
-                type: "O",
-                invite_id: "59dz6oygabfq589gc9ehh8nigy",
-                allow_open_invite: false
-            },
-            channel: {
-                id: "7be7n47oqpb9tk41zu8encipey",
-                create_at: 1486362822638,
-                team_id: "far4p4m9njy98mspcnh7fbqish",
-                type: "O",
-                display_name: "Off-Topic",
-                name: "off-topic",
-                last_post_at: 1487841552187,
-                creator_id: "",
-            },
-            self: {
-                id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
-                create_at: 1486362822629,
-                display_name: "mahmood",
-                name: "mahmood",
-                email: "shehbaz.bsee1395@gmail.com",
-                type: "O",
-            },
-        };
     }
 
     $(document).ready(function () {
@@ -378,7 +380,7 @@
             }
         }
 
-//============================-Classes-===========================================================
+//============================ JSON functions ===========================================================
         function getAllPosts() {
             let getAllPostsObj = {
                 teamId: activeChatDetailObj.team.id,
@@ -386,7 +388,7 @@
             };
             let data = "";
             $.ajax({
-                url: HostUrl + '/' + Controller + '/createPost',
+                url: HostUrl + '/' + Controller + '/getPosts',
                 dataType: 'JSON',
                 data: JSON.stringify(getAllPostsObj),
                 type: 'POST',
@@ -426,7 +428,7 @@
             };
             let data = "";
             $.ajax({
-                url: HostUrl + '/' + Controller + '/postsAfterPost',
+                url: HostUrl + '/' + Controller + '/'+ getPostsAfterPost,
                 dataType: 'JSON',
                 data: JSON.stringify(getPostsAfterPostObj),
                 type: 'POST',
@@ -441,10 +443,11 @@
             let getPostsSinceTimeObj = {
                 teamId: activeChatDetailObj.team.id,
                 channelId:activeChatDetailObj.channel.id,
+                time:activeChatDetailObj.user.create_at,
             };
             let data = "";
             $.ajax({
-                url: HostUrl + '/' + Controller + '/getpostssincetime',
+                url: HostUrl + '/' + Controller + '/getPostsSinceTime',
                 dataType: 'JSON',
                 data: JSON.stringify(getPostsSinceTimeObj),
                 type: 'POST',
@@ -455,10 +458,28 @@
             return data;
         }
         //=========Teams==================
+
+        function getTeamObject() {
+            let getTeamObj = {
+                teamId: activeChatDetailObj.team.id,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/getTeamObject',
+                dataType: 'JSON',
+                data: JSON.stringify(getTeamObj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+            return data;
+        }
+
         function getTeams() {
-                $data = "";
+                let data = "";
                 $.ajax({
-                    url: HostUrl+ '/' +Controller+ '/getallTeams',
+                    url: HostUrl+ '/' +Controller+ '/getTeams',
                     dataType: 'json',
                     type: 'GET',
                     success: function (response) {
@@ -476,7 +497,7 @@
             };
             let data = "";
             $.ajax({
-                url: HostUrl + '/' + Controller + '/getteammembers',
+                url: HostUrl + '/' + Controller + '/getTeamMembers',
                 dataType: 'JSON',
                 data: JSON.stringify(getTeamMembers),
                 type: 'POST',
@@ -490,11 +511,10 @@
        function getChannels() {
            let getChannelsObj = {
                teamId: activeChatDetailObj.team.id,
-               channelId: activeChatDetailObj.channel.id,
            };
            let data = "";
            $.ajax({
-               url: HostUrl + '/' + Controller + '/getteammembers',
+               url: HostUrl + '/' + Controller + '/'+getChannels,
                dataType: 'JSON',
                data: JSON.stringify(getChannelsObj),
                type: 'POST',
@@ -513,6 +533,22 @@
                 url: HostUrl + '/' + Controller + '/getteammembers',
                 dataType: 'JSON',
                 data: JSON.stringify(getChannelobj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+        }
+        function getChannelByName() {
+            let getChannelByNameobj = {
+                teamId: activeChatDetailObj.team.id,
+                channelName: activeChatDetailObj.channel.name,
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/'+getChannelByName,
+                dataType: 'JSON',
+                data: JSON.stringify(getChannelByNameobj),
                 type: 'POST',
                 success: function (response) {
                     data = response;
@@ -580,8 +616,60 @@
                 }
             });
         }
+//============Users========================================
+       function getUsersInChannel(){
+           let getUsesInChannel = {
+               teamId: activeChatDetailObj.team.id,
+               channelId:activeChatDetailObj.team.id,
+               offset:0,
+               limit:20,
+           };
+           let data = "";
+           $.ajax({
+               url: HostUrl + '/' + Controller + '/' + getUsersInChannel,
+               dataType: 'JSON',
+               data: JSON.stringify(getUsesInChannel),
+               type: 'POST',
+               success: function (response) {
+                   data = response;
+               }
+           });
+
+        }
+        function accessUsers(){
+            let accessUsersobj = {
+
+            };
+            let data = "";
+            $.ajax({
+                url: HostUrl + '/' + Controller + '/'+ accessUsers,
+                dataType: 'JSON',
+                data: JSON.stringify(accessUsersobj),
+                type: 'POST',
+                success: function (response) {
+                    data = response;
+                }
+            });
+
+        }
 
     });
+    function getThumbnail(){
+        let getThumbnailObj = {
+            fileName:"",
+        };
+        let data = "";
+        $.ajax({
+            url: HostUrl + '/' + Controller + '/'+getThumbnail,
+            dataType: 'JSON',
+            data: JSON.stringify(getThumbnailObj),
+            type: 'POST',
+            success: function (response) {
+                data = response;
+            }
+        });
+
+    }
     console.log("Outside the function "+userobj)
 
 
