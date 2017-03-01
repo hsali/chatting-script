@@ -9,7 +9,19 @@
 <body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script type="text/javascript" src="mattermost.js"></script>
+
 <script>
+    function myFunction() {
+        var x = document.getElementById("mySelect").value;
+        document.getElementById("mmc-content").innerHTML = "You selected: " + x;
+    }
 </script>
+<select id="mySelect" onchange="myFunction()">
+    <option value="Off-Topic">Off-Topic
+    <option value="Town Square">Town Square
+    <option value="Other">Other
+</select>
+<p id="demo">Select channel:</p>
+
 </body>
 </html>
