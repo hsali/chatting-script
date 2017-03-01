@@ -30,9 +30,11 @@ gulp.task('babel', function () {
        .pipe(gulp.dest('output/js'));
 });
 
+
 gulp.task('sass:watch', function () {
     gulp.watch('./scss/*.scss', ['sass']);
 });
+
 
 gulp.task('production', ['templates', 'scss','babel']);
 
@@ -52,6 +54,13 @@ gulp.task('test-scss', function () {
         .pipe(gulp.dest('test/css'));
 });
 gulp.task('test-babel', function () {
+    return gulp.src('babel/*.js')
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('test/js'));
+});
+gulp.task('test-babel:watch', function () {
     return gulp.src('babel/*.js')
         .pipe(babel({
             presets: ['es2015']
