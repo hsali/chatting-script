@@ -1432,26 +1432,26 @@ function isUserExist(userId) {
     console.log(users[user]);
 }
 
-function getAllPostsS() {
+function showPosts(posts) {
     try {
-        let posts_data = JSON.parse(getAllPosts());
-        let posts_orders = posts_data.order;
-        let rev_posts_orders = posts_orders.reverse();
-        let post_items = posts_data.posts;
-        let i = 0, getpost_id = "";
-        console.log("posts" + post_items);
-        console.log("orders" + rev_posts_orders);
-        console.log("message: " + post_items[rev_posts_orders[0]].message);
-        while (i < rev_posts_orders.length) {
-            let message = post_items[rev_posts_orders[i]].message;
-            getpost_id = post_items[rev_posts_orders[i]].id;
-            console.log(getpost_id);
-            filter(message, getpost_id);
+        let postData = JSON.parse(posts);
+        let postOrder = postData.order;
+        let revPostsOrder = postOrder.reverse();
+        let postItems = postData.posts;
+        let i = 0, postId = "";
+        console.log("posts" + postItems);
+        console.log("orders" + revPostsOrder);
+        console.log("message: " + postItems[revPostsOrder[0]].message);
+        while (i < revPostsOrder.length) {
+            let message = postItems[revPostsOrder[i]].message;
+            postId = postItems[revPostsOrder[i]].id;
+            console.log(postId);
+            filter(message, postId);
             i++;
         }
         // @todo fix the last post id
-        lastPostId = posts_orders[0].id;
-        lastPostTime = post_items[0].create_at;
+        lastPostId = postOrder[0].id;
+        lastPostTime = postItems[0].create_at;
         console.log(lastPostId);
     } catch (e) {
         console.log("not calling" + e.message);
@@ -1459,8 +1459,8 @@ function getAllPostsS() {
 
 }
 
-function filter(message, getpost_id) {
-    if (getpost_id == userobj.Self.id) {
+function filter(message, postId) {
+    if (postId == activeChatDetail.user.id) {
         setTimeout(() => {
             console.log(message);
             messenger.send(message);
@@ -1490,14 +1490,14 @@ function getPostsAftePost() {
         let after_posts = JSON.parse(getPostsAfterPost());
         let after_orders = after_posts.order;
         let rev_afterorders = after_orders.reverse();
-        let post_items = after_posts.posts;
+        let postItems = after_posts.posts;
         let i = 0;
-        console.log("posts" + post_items);
+        console.log("posts" + postItems);
         console.log("orders" + rev_afterorders);
-        console.log("message: " + post_items[rev_afterorders[0]].message);
+        console.log("message: " + postItems[rev_afterorders[0]].message);
         console.log("testing");
         while (i < rev_afterorders.length) {
-            let message = post_items[rev_afterorders[i]].message;
+            let message = postItems[rev_afterorders[i]].message;
             setTimeout(() => {
                 console.log(message);
                 messenger.recieve(message);
@@ -1505,7 +1505,7 @@ function getPostsAftePost() {
             i++;
         }
         lastPostId = (after_orders.length).id;
-        lastPostTime = (post_items.length).create_at;
+        lastPostTime = (postItems.length).create_at;
         console.log(lastPostId);
     } catch (e) {
         console.log("not calling" + e.message);
@@ -1514,7 +1514,7 @@ function getPostsAftePost() {
 
 //============================ JSON functions =============================
   function getAllPosts(tmId, chId) {
-    let data = "mahmood";
+    let data ;
     if (env == 0) {
          data = testDetail.posts[tmId][chId];
     }
@@ -1932,13 +1932,11 @@ $(document).ready(function () {
     messenger.onSend = buildSent;
     messenger.onRecieve = buildRecieved;
     console.log("before calling");
-
-    getAllPostsS();
+    //getAllPostsS();
     $input.focus();
     $send.on('click', function (e) {
         sendMessage();
     });
-
     $input.on('keydown', function (e) {
         let key = e.which || e.keyCode;
 
@@ -1969,13 +1967,10 @@ function ChangeChannel(selected) {
     channel = selected;
     let opt = "";
     debugger;
-    let chs = getAllPosts(team,channel);
-    alert(chs);
-    for (let ch in chs) {
-        opt += "<option value='" + chs[ch].id + "'>" + chs[ch].name + "</option>";
-        console.log(opt);
-    }
-    $("#postSelection").append(opt);
+    let posts = getAllPosts(team,channel);
+    alert(posts);
+    showPosts(posts);
+
 }
 
 (function(){
