@@ -1395,7 +1395,7 @@ function initiate() {
 
     isTeamExist(defaultDetail.teamId);
     isChannelExist(defaultDetail.channelId);
-    isUserExist(defaultDetail.userId);
+    //isUserExist(defaultDetail.userId);
 }
 function isTeamExist(teamId) {
     let teams = getTeams();
@@ -1407,17 +1407,15 @@ function isTeamExist(teamId) {
     }
     activeChatDetail.team = teams[team];
 }
-function isChannelExist(channelId) {
-    let channels = getChannels();
-    let chan;
+function isChannelExist(teamId,channelId) {
+    let channels = getChannels(teamId);
+    let chan  = 0;
     for (chan in channels) {
         console.log(channels[chan].id);
-        if (channelId == channels[chan].id) {
-            break;
+        if (channelId ==  channels[chan].id) {
+            activeChatDetail.channel = channels[chan];
         }
     }
-    activeChatDetail.channel = channels[chan];
-    console.log(channels[chan]);
 }
 function isUserExist(userId) {
     let users = getUsersInChannel();
@@ -1627,14 +1625,14 @@ function getTeamMembers(teamId, offset, limit) {
     });
     return data;
 }
-//============Channels==========================
-function getChannels(id) {
+//===============Channels==========================
+function getChannels(teamId) {
     let data = "";
     if (env == 0) {
-        data = testDetail.channels;
+        data = testDetail.channels[teamId];
     } else if (env == 1) {
         let reqParam = {
-            teamId: id,
+            teamId: teamId,
         };
         $.ajax({
             url: accessURLs.getChannels,
@@ -1947,12 +1945,12 @@ function myFunction(selected) {
     $('#channelSelection').empty();
     $("#channelSelection").append(opt);
 }
-function ChangeChannel(selected) {
+function ChangeChannel(selectedChannel) {
     $('#mmc-content').empty();
-    console.log(selected);
+    console.log(selectedChannel);
     //debugger;
-    //isChannelExist(selected);
-    activeChatDetail.channel.id = selected;
+    isChannelExist(activeChatDetail.team.id,selectedChannel);
+    //activeChatDetail.channel.id = selectedChannel;
     let opt = "";
     let posts = getAllPosts(activeChatDetail.team.id,activeChatDetail.channel.id);
     console.log(posts);
