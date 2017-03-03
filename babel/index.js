@@ -1936,7 +1936,7 @@ $(document).ready(function () {
 function myFunction(selected) {
     $('#mmc-content').empty();
     console.log(selected);
-    activeChatDetail.team.id = selected;
+    isTeamExist(selected);
     let opt = "";
     let chs = testDetail.channels[activeChatDetail.team.id];
     console.log(chs);
@@ -1950,6 +1950,8 @@ function myFunction(selected) {
 function ChangeChannel(selected) {
     $('#mmc-content').empty();
     console.log(selected);
+    //debugger;
+    //isChannelExist(selected);
     activeChatDetail.channel.id = selected;
     let opt = "";
     let posts = getAllPosts(activeChatDetail.team.id,activeChatDetail.channel.id);
