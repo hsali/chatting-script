@@ -1944,6 +1944,7 @@ function myFunction(selected) {
         opt += "<option value='" + chs[ch].id + "'>" + chs[ch].name + "</option>";
         console.log(opt);
     }
+    $('#channelSelection').empty();
     $("#channelSelection").append(opt);
 }
 function ChangeChannel(selected) {
