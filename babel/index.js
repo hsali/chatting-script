@@ -3,6 +3,7 @@
  * 1 - production environment
  * @type {number}
  */
+
 let lastPostId = "";
 let lastPostTime = "";
 
@@ -1396,7 +1397,6 @@ function initiate() {
     isChannelExist(defaultDetail.channelId);
     isUserExist(defaultDetail.userId);
 }
-
 function isTeamExist(teamId) {
     let teams = getTeams();
     let team;
@@ -1431,10 +1431,9 @@ function isUserExist(userId) {
     activeChatDetail.user = users[user];
     console.log(users[user]);
 }
-
 function showPosts(posts) {
     try {
-        let postData = JSON.parse(posts);
+        let postData = posts;
         let postOrder = postData.order;
         let revPostsOrder = postOrder.reverse();
         let postItems = postData.posts;
@@ -1446,7 +1445,19 @@ function showPosts(posts) {
             let message = postItems[revPostsOrder[i]].message;
             postId = postItems[revPostsOrder[i]].id;
             console.log(postId);
-            filter(message, postId);
+            //filter(message, postId);
+            console.log("testing 123");
+            console.log(message);
+            if (postId == activeChatDetail.user.id) {
+                setTimeout(() => {
+                    messenger.send(message);
+                }, (i * 500 + 1000));
+            }
+            else {
+                setTimeout(() => {
+                    messenger.recieve(message);
+                }, (i * 500 + 1000));
+            }
             i++;
         }
         // @todo fix the last post id
@@ -1456,35 +1467,7 @@ function showPosts(posts) {
     } catch (e) {
         console.log("not calling" + e.message);
     }
-
 }
-
-function filter(message, postId) {
-    if (postId == activeChatDetail.user.id) {
-        setTimeout(() => {
-            console.log(message);
-            messenger.send(message);
-        }, (i * 500 + 500));
-    }
-    else {
-        setTimeout(() => {
-            console.log(message);
-            messenger.recieve(message);
-        }, (i * 500 + 500));
-    }
-
-}
-
-function createPost(msg) {
-    let messg = msg;
-    try {
-        messenger.send(messg);
-    } catch (e) {
-        console.log("message not created" + e.message);
-    }
-
-}
-
 function getPostsAftePost() {
     try {
         let after_posts = JSON.parse(getPostsAfterPost());
@@ -1513,17 +1496,17 @@ function getPostsAftePost() {
 }
 
 //============================ JSON functions =============================
-  function getAllPosts(tmId, chId) {
-    let data ;
+function getAllPosts(tmId, chId) {
+    let data = new Object();
     if (env == 0) {
-         data = testDetail.posts[tmId][chId];
+        let c = testDetail.posts[tmId][chId];
+        data = testDetail.posts[tmId][chId];
     }
     else if (env == 1) {
         let reqParam = {
             teamId: teamId,
             channelId: channelId,
         };
-
         $.ajax({
             url: accessURLs.posts,
             dataType: 'JSON',
@@ -1777,7 +1760,7 @@ function accessUsers() {
  * chat Behavior and classes
  */
 //================Class Massenger==========================
- class Messenger {
+class Messenger {
     constructor() {
         this.messageList = [];
         this.deletedList = [];
@@ -1865,11 +1848,13 @@ class BuildHTML {
         return this._build(text, 'them');
     }
 }
+let messenger = new Messenger();
+let buildHTML = new BuildHTML();
 //===============Document Session=====================
 $(document).ready(function () {
     initiate();
-    let messenger = new Messenger();
-    let buildHTML = new BuildHTML();
+    /*let messenger = new Messenger();
+    let buildHTML = new BuildHTML();*/
 
     let $input = $('#mmc-input');
     let $send = $('#mmc-send');
@@ -1919,7 +1904,7 @@ $(document).ready(function () {
 
         let text = $input.val();
         messenger.send(text);
-        createPost(text);
+        createPost(activeChatDetail.team.id,activeChatDetail.channel.id,text);
         $input.val('');
 
         setInterval(() => {
@@ -1932,7 +1917,7 @@ $(document).ready(function () {
     messenger.onSend = buildSent;
     messenger.onRecieve = buildRecieved;
     console.log("before calling");
-    //getAllPostsS();
+    showPosts();
     $input.focus();
     $send.on('click', function (e) {
         sendMessage();
@@ -1947,13 +1932,11 @@ $(document).ready(function () {
         }
     });
 });
-let team = "";
-let channel  = "";
 function myFunction(selected) {
     console.log(selected);
-    team = selected;
+    activeChatDetail.team.id = selected;
     let opt = "";
-    let chs = testDetail.channels[team];
+    let chs = testDetail.channels[activeChatDetail.team.id];
     console.log(chs);
     for (let ch in chs) {
         opt += "<option value='" + chs[ch].id + "'>" + chs[ch].name + "</option>";
@@ -1961,16 +1944,14 @@ function myFunction(selected) {
     }
     $("#channelSelection").append(opt);
 }
-
 function ChangeChannel(selected) {
     console.log(selected);
-    channel = selected;
+    activeChatDetail.channel.id = selected;
     let opt = "";
-    debugger;
-    let posts = getAllPosts(team,channel);
-    alert(posts);
+    //debugger;
+    let posts = getAllPosts(activeChatDetail.team.id,activeChatDetail.channel.id);
+    console.log(posts);
     showPosts(posts);
-
 }
 
 (function(){
