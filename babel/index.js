@@ -1363,7 +1363,7 @@ let activeChatDetail = {
         creator_id: "1o46dhhacfnk9r1uayubq9mpic"
     },
     user: {
-        id: "1o46dhhacfnk9r1uayubq9mpic",
+        id: "ba1jw9m6m78fzfyx96xwrdz4to",
         create_at: 1486370521589,
         username: "imad",
         email: "hamadkhankhel@gmail.com",
@@ -1850,7 +1850,7 @@ class BuildHTML {
 }
 let messenger = new Messenger();
 let buildHTML = new BuildHTML();
-//===============Document Session=====================
+//===============Document Session==========================
 $(document).ready(function () {
     initiate();
     /*let messenger = new Messenger();
@@ -1932,7 +1932,9 @@ $(document).ready(function () {
         }
     });
 });
+
 function myFunction(selected) {
+    $('#mmc-content').empty();
     console.log(selected);
     activeChatDetail.team.id = selected;
     let opt = "";
@@ -1945,15 +1947,14 @@ function myFunction(selected) {
     $("#channelSelection").append(opt);
 }
 function ChangeChannel(selected) {
+    $('#mmc-content').empty();
     console.log(selected);
     activeChatDetail.channel.id = selected;
     let opt = "";
-    //debugger;
     let posts = getAllPosts(activeChatDetail.team.id,activeChatDetail.channel.id);
     console.log(posts);
     showPosts(posts);
 }
-
 (function(){
 
     let opt = "";
