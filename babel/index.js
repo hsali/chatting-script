@@ -112,11 +112,11 @@ let testDetail = {
                 "creator_id": ""
             }
         ],
-        "kgrwcfe9opdmdb6jc4b1jn4hhh": [
+        "kgrwcfe9opdmdb6jc4b1jn4hhh":[
             {
-                "id": "7be7n47oqpb9tk41zu8encipey",
-                "create_at": 1486362822638,
-                "update_at": 1486362822638,
+                "id": "qexhwiihsibumghidgg5uhuyzh",
+                "create_at": 1486464222886,
+                "update_at": 1486464222886,
                 "delete_at": 0,
                 "team_id": "kgrwcfe9opdmdb6jc4b1jn4hhh",
                 "type": "O",
@@ -124,15 +124,15 @@ let testDetail = {
                 "name": "off-topic",
                 "header": "",
                 "purpose": "",
-                "last_post_at": 1487922820957,
-                "total_msg_count": 14,
-                "extra_update_at": 1487922820954,
+                "last_post_at": 1488604071838,
+                "total_msg_count": 3,
+                "extra_update_at": 1486464222923,
                 "creator_id": ""
             },
             {
-                "id": "tohoobbjpf88pft5upfjdnjx5a",
-                "create_at": 1486362822632,
-                "update_at": 1486362822632,
+                "id": "4st579qwa3fxzpaugqs6ibnf5a",
+                "create_at": 1486464222881,
+                "update_at": 1486464222881,
                 "delete_at": 0,
                 "team_id": "kgrwcfe9opdmdb6jc4b1jn4hhh",
                 "type": "O",
@@ -140,17 +140,17 @@ let testDetail = {
                 "name": "town-square",
                 "header": "",
                 "purpose": "",
-                "last_post_at": 1487922820942,
+                "last_post_at": 1488278539519,
                 "total_msg_count": 2,
-                "extra_update_at": 1487922820939,
+                "extra_update_at": 1486464222907,
                 "creator_id": ""
             }
         ],
         "sqeb57bc7bgajj4p4mb4a1q54o": [
             {
-                "id": "7be7n47oqpb9tk41zu8encipey",
-                "create_at": 1486362822638,
-                "update_at": 1486362822638,
+                "id": "n1wyjgkcjpbejktr6n7ega4g7h",
+                "create_at": 1486704506515,
+                "update_at": 1486704506515,
                 "delete_at": 0,
                 "team_id": "sqeb57bc7bgajj4p4mb4a1q54o",
                 "type": "O",
@@ -158,15 +158,15 @@ let testDetail = {
                 "name": "off-topic",
                 "header": "",
                 "purpose": "",
-                "last_post_at": 1487922820957,
-                "total_msg_count": 14,
-                "extra_update_at": 1487922820954,
+                "last_post_at": 1487572336966,
+                "total_msg_count": 2,
+                "extra_update_at": 1487572336963,
                 "creator_id": ""
             },
             {
-                "id": "tohoobbjpf88pft5upfjdnjx5a",
-                "create_at": 1486362822632,
-                "update_at": 1486362822632,
+                "id": "rincgswz1tbz8j7yhxrbjpkgsw",
+                "create_at": 1486704506510,
+                "update_at": 1486704506510,
                 "delete_at": 0,
                 "team_id": "sqeb57bc7bgajj4p4mb4a1q54o",
                 "type": "O",
@@ -174,12 +174,12 @@ let testDetail = {
                 "name": "town-square",
                 "header": "",
                 "purpose": "",
-                "last_post_at": 1487922820942,
-                "total_msg_count": 2,
-                "extra_update_at": 1487922820939,
+                "last_post_at": 1488278484972,
+                "total_msg_count": 6,
+                "extra_update_at": 1487572336948,
                 "creator_id": ""
             }
-        ],
+        ]
     },
     posts: {
         "far4p4m9njy98mspcnh7fbqish": {
@@ -1948,7 +1948,6 @@ function myFunction(selected) {
 function ChangeChannel(selectedChannel) {
     $('#mmc-content').empty();
     console.log(selectedChannel);
-    //debugger;
     isChannelExist(activeChatDetail.team.id,selectedChannel);
     //activeChatDetail.channel.id = selectedChannel;
     let opt = "";
@@ -1957,14 +1956,13 @@ function ChangeChannel(selectedChannel) {
     showPosts(posts);
 }
 (function(){
-
-    let opt = "";
-    let tms = testDetail.teams; //userDetail.teams;
+    let opt = "<option value='Select Team' selected>Select Team </option>";
+    let tms = testDetail.teams;
     for (let t in tms){
         opt+="<option value='"+tms[t].id + "'>"+tms[t].name + "</option>";
         console.log(opt);
     }
-    $("#mySelect").append(opt);
+    $("#teamSelection").append(opt);
 }());
 
 
