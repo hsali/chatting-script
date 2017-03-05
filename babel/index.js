@@ -1441,20 +1441,19 @@ function showPosts(posts) {
         console.log("message: " + postItems[revPostsOrder[0]].message);
         while (i < revPostsOrder.length) {
             let message = postItems[revPostsOrder[i]].message;
-            postId = postItems[revPostsOrder[i]].id;
+            postId = postItems[revPostsOrder[i]].user_id;
             console.log(postId);
-            //filter(message, postId);
             console.log("testing 123");
             console.log(message);
             if (postId == activeChatDetail.user.id) {
                 setTimeout(() => {
                     messenger.send(message);
-                }, (i * 500 + 1000));
+                }, (i * 500 + 0));
             }
             else {
                 setTimeout(() => {
                     messenger.recieve(message);
-                }, (i * 500 + 1000));
+                }, (i * 500 + 0));
             }
             i++;
         }
@@ -1492,7 +1491,6 @@ function getPostsAftePost() {
         console.log("not calling" + e.message);
     }
 }
-
 //============================ JSON functions =============================
 function getAllPosts(tmId, chId) {
     let data = new Object();
