@@ -1899,7 +1899,9 @@
 
             let text = $input.val();
             messenger.send(text);
-            //createPost(activeChatDetail.team.id,activeChatDetail.channel.id,text);
+            if(env==1) {
+                createPost(activeChatDetail.team.id, activeChatDetail.channel.id, text);
+            }
             $input.val('');
            /* setInterval(() => {
                 getPostsAfterPost();
@@ -1941,7 +1943,7 @@
         $("#channelSelection").append(opt);
         $(".mmc-main-nav-item-link").empty();
         $(".mmc-main-nav-item-link").append(chs[0].display_name);
-        isChannelExist(activeChatDetail.team.id,activeChatDetail.channel.id);
+        isChannelExist(activeChatDetail.team.id,chs[0].id);//channel shows in channel box
         let posts = getAllPosts(activeChatDetail.team.id,activeChatDetail.channel.id);
         showPosts(posts);
     }
