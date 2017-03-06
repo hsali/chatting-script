@@ -1466,9 +1466,10 @@
             console.log("not calling" + e.message);
         }
     }
-    function getPostsAfterPost() {
+    //============================ JSON functions =============================
+    function showPostsAfterpost() {
         try {
-            let after_posts = JSON.parse(data);
+            let after_posts = JSON.parse( getPostsAfterPost(activeChatDetail.team.id,activeChatDetail.channel.id,lastPostId));
             let after_orders = after_posts.order;
             let rev_afterorders = after_orders.reverse();
             let postItems = after_posts.posts;
@@ -1492,7 +1493,6 @@
             console.log("not calling" + e.message);
         }
     }
-    //============================ JSON functions =============================
     function getAllPosts(tmId, chId) {
         let data = new Object();
         if (env == 0) {
@@ -1534,13 +1534,13 @@
         });
         return data;
     }
-    function getPostsAfterPost(teamId, channelId, postId, offset=0, limit=20) {
+    function getPostsAfterPost(teamId, channelId, postId) {
         let reqParam = {
             teamId: teamId,
             channelId: channelId,
             postId: postId,
-            offset: offset,
-            limit: limit,
+            offset: 0,
+            limit: 20,
         };
         let data = "";
         $.ajax({
@@ -1579,7 +1579,7 @@
         };
         let data = "";
         $.ajax({
-            url: accessURLs.getTeamObject,
+            url: accessURLs.getTeam,
             dataType: 'JSON',
             data: JSON.stringify(reqParam),
             type: 'POST',
@@ -1624,7 +1624,7 @@
         });
         return data;
     }
-    //===============Channels==========================
+    //===============Channels==========
     function getChannels(teamId) {
         let data = "";
         if (env == 0) {
@@ -1715,7 +1715,7 @@
         });
         return data;
     }
-    //============Users========================================
+    //============Users=================
     function getUsersInChannel(teamId, channelId, offset = 0, limit = 20) {
         let data = "";
         if (env == 0) {
@@ -1756,7 +1756,7 @@
     /**
      * chat Behavior and classes
      */
-    //================Class Massenger==========================
+    //================Class Massenger====
     class Messenger {
         constructor() {
             this.messageList = [];
@@ -1779,28 +1779,25 @@
                     text: text,
                     time: new Date().getTime()
                 };
-
                 this.messageList.push(message);
-
                 this.onSend(message);
             }
         }
 
         recieve(text = '') {
             text = this.filter(text);
-
             if (this.validate(text)) {
                 let message = {
                     user: this.them,
                     text: text,
                     time: new Date().getTime()
                 };
-
                 this.messageList.push(message);
 
                 this.onRecieve(message);
             }
         }
+
         delete(index) {
             index = index || (this.messageLength - 1);
 
@@ -1846,7 +1843,7 @@
     }
     let messenger = new Messenger();
     let buildHTML = new BuildHTML();
-    //===============Document Session==========================
+    //===============Document Session=====
     $(document).ready(function () {
         initiate();
         /*let messenger = new Messenger();
@@ -1903,9 +1900,11 @@
                 createPost(activeChatDetail.team.id, activeChatDetail.channel.id, text);
             }
             $input.val('');
-           /* setInterval(() => {
-                getPostsAfterPost();
-            }, 5000);*/
+            if (env==1) {
+                 setInterval(() => {
+                showPostsAfterpost();
+                 }, 5000);
+            }
             $input.focus();
         }
 
@@ -1941,8 +1940,8 @@
         }
         $('#channelSelection').empty();
         $("#channelSelection").append(opt);
-        $(".mmc-main-nav-item-link").empty();
-        $(".mmc-main-nav-item-link").append(chs[0].display_name);
+       /* $(".mmc-main-nav-item-link").empty();
+        $(".mmc-main-nav-item-link").append(chs[0].display_name);*/
         isChannelExist(activeChatDetail.team.id,chs[0].id);//channel shows in channel box
         let posts = getAllPosts(activeChatDetail.team.id,activeChatDetail.channel.id);
         showPosts(posts);
@@ -1953,8 +1952,8 @@
         isChannelExist(activeChatDetail.team.id,selectedChannel);
         let opt = "";
         let posts = getAllPosts(activeChatDetail.team.id,activeChatDetail.channel.id);
-        $(".mmc-main-nav-item-link").empty();
-        $(".mmc-main-nav-item-link").append(activeChatDetail.channel.display_name);
+        /*$(".mmc-main-nav-item-link").empty();
+        $(".mmc-main-nav-item-link").append(activeChatDetail.channel.display_name);*/
         console.log(posts);
         showPosts(posts);
     }
