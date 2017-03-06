@@ -108,13 +108,14 @@ $trans: 0.3s ease;
           cursor: pointer;
         }
       }
-      
+
       .mmc-options {
         height: 32px;
         width: 32px;
         background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/104946/ic_more_vert_white_48dp.png);
         background-size: contain;
-        margin: 16px;
+        margin-right: 80px;
+        margin-top: 16px;
         position: absolute;
         right: 0;
         
@@ -137,7 +138,7 @@ $trans: 0.3s ease;
           position: relative;
           height: $navHeight;
           width: 100%;
-
+          padding-top: 16px;
           text-align: center;
           line-height: $navHeight;
           text-decoration: none;
