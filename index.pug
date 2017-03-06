@@ -7,8 +7,10 @@ link(rel="stylesheet" href="http://hsali.github.io/chatting-script/output/css/st
             .mmc-main-nav
                 .mmc-toggle
                 .mmc-main-nav-item
-                    a.mmc-main-nav-item-link(href="#") Blake
+                    a.mmc-main-nav-item-link(href="#")
+                        select#channelSelection(onchange='ChangeChannel(this.value)')
                 .mmc-options
+                    select#teamSelection(onchange='teamSelection(this.value)')
     .mmc-inner#mmc-inner
         .mmc-content#mmc-content
     .mmc-bottom#mmc-bottom

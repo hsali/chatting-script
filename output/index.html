@@ -7,8 +7,11 @@
     <div class="mmc-default-nav">
       <div class="mmc-main-nav">
         <div class="mmc-toggle"></div>
-        <div class="mmc-main-nav-item"><a class="mmc-main-nav-item-link" href="#">Blake</a></div>
-        <div class="mmc-options"></div>
+        <div class="mmc-main-nav-item"><a class="mmc-main-nav-item-link" href="#">
+            <select id="channelSelection" onchange="ChangeChannel(this.value)"></select></a></div>
+        <div class="mmc-options">
+          <select id="teamSelection" onchange="teamSelection(this.value)"></select>
+        </div>
       </div>
     </div>
   </nav>
