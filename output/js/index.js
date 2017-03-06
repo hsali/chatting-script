@@ -1933,7 +1933,7 @@ function ChangeChannel(selectedChannel) {
 }
 (function () {
     var opt = "<option value='Select Team' selected>Select Team </option>";
-    var tms = testDetail.teams;
+    var tms = userDetail.teams;
     for (var t in tms) {
         opt += "<option value='" + tms[t].id + "'>" + tms[t].display_name + "</option>";
         console.log(opt);

@@ -1907,7 +1907,6 @@
             }
             $input.focus();
         }
-
         messenger.onSend = buildSent;
         messenger.onRecieve = buildRecieved;
         console.log("before calling");
@@ -1959,7 +1958,9 @@
     }
     (function(){
         let opt = "<option value='Select Team' selected>Select Team </option>";
+
         let tms = testDetail.teams;
+        //let tms = userDetail.teams;
         for (let t in tms){
             opt+="<option value='"+tms[t].id + "'>"+tms[t].display_name + "</option>";
             console.log(opt);
