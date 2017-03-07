@@ -1298,6 +1298,7 @@ var activeChatDetail = {
     }
 };
 // current login user detail
+debugger;
 var tmpAllTeams = getTeams();
 alert(tmpAllTeams);
 /*function getAllChannels(teamId) {
