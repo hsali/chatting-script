@@ -1369,6 +1369,7 @@
         },
     };
     // current login user detail
+    debugger;
     let tmpAllTeams = getTeams();
     alert(tmpAllTeams);
     /*function getAllChannels(teamId) {
