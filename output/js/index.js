@@ -1580,6 +1580,7 @@ function getChannels(teamId) {
                 data = response;
             }
         });
+        return JSON.parse(data);
     }
     return data;
 }

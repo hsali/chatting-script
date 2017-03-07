@@ -1641,6 +1641,7 @@
                     data = response;
                 }
             });
+            return JSON.parse(data);
         }
         return data;
     }
