@@ -7,7 +7,7 @@
     let lastPostId = "";
     let lastPostTime = "";
 
-    let env = 1;
+    let env = 0;
     let hostURL = "http://localhost:51916/";
     let pathURL = "MattermostApi/";
     let accessURLs = {
@@ -1601,8 +1601,8 @@
                     data = response;
                 }
             });
+            return JSON.parse(data);
         }
-
         return data;
     }
     function getTeamMembers(teamId, offset, limit) {
