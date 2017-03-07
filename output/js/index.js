@@ -956,7 +956,6 @@ var testDetail = {
                 }
             }
         }
-
     },
     users: {
         "far4p4m9njy98mspcnh7fbqish": {
@@ -1300,6 +1299,7 @@ var activeChatDetail = {
 };
 // current login user detail
 var tmpAllTeams = getTeams();
+alert(tmpAllTeams);
 /*function getAllChannels(teamId) {
     let allChannels = testDetail.channels;
     for (let obj in tmpAllTeams) {
@@ -1439,8 +1439,8 @@ function getAllPosts(tmId, chId) {
         data = testDetail.posts[tmId][chId];
     } else if (env == 1) {
         var reqParam = {
-            teamId: teamId,
-            channelId: channelId
+            teamId: tmId,
+            channelId: chId
         };
         $.ajax({
             url: accessURLs.posts,

@@ -1021,7 +1021,6 @@
                     }
                 }
             }
-
         },
         users:{
             "far4p4m9njy98mspcnh7fbqish": {
@@ -1371,6 +1370,7 @@
     };
     // current login user detail
     let tmpAllTeams = getTeams();
+    alert(tmpAllTeams);
     /*function getAllChannels(teamId) {
         let allChannels = testDetail.channels;
         for (let obj in tmpAllTeams) {
@@ -1500,8 +1500,8 @@
         }
         else if (env == 1) {
             let reqParam = {
-                teamId: teamId,
-                channelId: channelId,
+                teamId: tmId,
+                channelId: chId,
             };
             $.ajax({
                 url: accessURLs.posts,
