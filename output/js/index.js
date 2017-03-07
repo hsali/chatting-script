@@ -1540,8 +1540,8 @@ function getTeams() {
                 data = response;
             }
         });
+        return JSON.parse(data);
     }
-
     return data;
 }
 function getTeamMembers(teamId, offset, limit) {
