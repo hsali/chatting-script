@@ -1451,6 +1451,7 @@ function getAllPosts(tmId, chId) {
                 data = response;
             }
         });
+        return JSON.parse(data);
     }
     return data;
 }
