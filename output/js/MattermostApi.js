@@ -31,6 +31,8 @@ var API = function API() {
     this.getUsersInChannel = "";
 };
 
+var data = "";
+
 var Teams = function () {
     function Teams() {
         _classCallCheck(this, Teams);

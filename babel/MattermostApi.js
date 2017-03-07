@@ -25,6 +25,7 @@ class API{
         this.getUsersInChannel= "";
     }
 }
+let data = "";
 class Teams{
    /* constructor(options) {
         this.HostUrl = options.HostUrl;
