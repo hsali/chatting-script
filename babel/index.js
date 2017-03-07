@@ -1371,16 +1371,16 @@
     };
     // current login user detail
     let tmpAllTeams = getTeams();
-    function getAllChannels(tmpAllTeams) {
+    /*function getAllChannels(teamId) {
         let allChannels = testDetail.channels;
         for (let obj in tmpAllTeams) {
             allChannels.obj = getChannels(obj);
         }
         return allChannels;
-    }
+    }*/
     let userDetail = {
         teams: tmpAllTeams,
-        channels: getAllChannels(tmpAllTeams),
+        channels: getChannels(activeChatDetail.team.id),
         me: {
             id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
             create_at: 1486362822629,
@@ -1398,7 +1398,7 @@
         //isUserExist(defaultDetail.userId);
     }
     function isTeamExist(teamId) {
-        let teams = getTeams();
+        let teams = userDetail.teams;
         let team;
         for (team in teams) {
             if (teamId == teams[team].id) {
@@ -1408,7 +1408,7 @@
         activeChatDetail.team = teams[team];
     }
     function isChannelExist(teamId,channelId) {
-        let channels = getChannels(teamId);
+        let channels = userDetail.channels;
         let chan  = 0;
         for (chan in channels) {
             console.log(channels[chan].id);
@@ -1496,7 +1496,6 @@
     function getAllPosts(tmId, chId) {
         let data = new Object();
         if (env == 0) {
-            let c = testDetail.posts[tmId][chId];
             data = testDetail.posts[tmId][chId];
         }
         else if (env == 1) {
@@ -1930,8 +1929,10 @@
         $('#mmc-content').empty();
         console.log(selected);
         isTeamExist(selected);
-        let opt = "",selectedchannel ="";
-        let chs = testDetail.channels[activeChatDetail.team.id];
+        let opt = "",chs ="";
+
+        chs = userDetail.channels = getChannels(activeChatDetail.team.id);
+        activeChatDetail.channel = chs[0];
         console.log(chs);
         for (let ch in chs) {
             opt += "<option value='" + chs[ch].id + "'>" + chs[ch].display_name + "</option>";
@@ -1941,7 +1942,7 @@
         $("#channelSelection").append(opt);
        /* $(".mmc-main-nav-item-link").empty();
         $(".mmc-main-nav-item-link").append(chs[0].display_name);*/
-        isChannelExist(activeChatDetail.team.id,chs[0].id);//channel shows in channel box
+        //debugger;
         let posts = getAllPosts(activeChatDetail.team.id,activeChatDetail.channel.id);
         showPosts(posts);
     }
@@ -1958,9 +1959,7 @@
     }
     (function(){
         let opt = "<option value='Select Team' selected>Select Team </option>";
-
-        let tms = testDetail.teams;
-        //let tms = userDetail.teams;
+        let tms = userDetail.teams;
         for (let t in tms){
             opt+="<option value='"+tms[t].id + "'>"+tms[t].display_name + "</option>";
             console.log(opt);
