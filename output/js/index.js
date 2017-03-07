@@ -1300,16 +1300,16 @@ var activeChatDetail = {
 };
 // current login user detail
 var tmpAllTeams = getTeams();
-function getAllChannels(tmpAllTeams) {
-    var allChannels = testDetail.channels;
-    for (var obj in tmpAllTeams) {
+/*function getAllChannels(teamId) {
+    let allChannels = testDetail.channels;
+    for (let obj in tmpAllTeams) {
         allChannels.obj = getChannels(obj);
     }
     return allChannels;
-}
+}*/
 var userDetail = {
     teams: tmpAllTeams,
-    channels: getAllChannels(tmpAllTeams),
+    channels: getChannels(activeChatDetail.team.id),
     me: {
         id: "kgrwcfe9opdmdb6jc4b1jn4hhh",
         create_at: 1486362822629,
@@ -1327,7 +1327,7 @@ function initiate() {
     //isUserExist(defaultDetail.userId);
 }
 function isTeamExist(teamId) {
-    var teams = getTeams();
+    var teams = userDetail.teams;
     var team = void 0;
     for (team in teams) {
         if (teamId == teams[team].id) {
@@ -1337,7 +1337,7 @@ function isTeamExist(teamId) {
     activeChatDetail.team = teams[team];
 }
 function isChannelExist(teamId, channelId) {
-    var channels = getChannels(teamId);
+    var channels = userDetail.channels;
     var chan = 0;
     for (chan in channels) {
         console.log(channels[chan].id);
@@ -1436,7 +1436,6 @@ function showPostsAfterpost() {
 function getAllPosts(tmId, chId) {
     var data = new Object();
     if (env == 0) {
-        var c = testDetail.posts[tmId][chId];
         data = testDetail.posts[tmId][chId];
     } else if (env == 1) {
         var reqParam = {
@@ -1879,7 +1878,6 @@ $(document).ready(function () {
         }
         $input.focus();
     }
-
     messenger.onSend = buildSent;
     messenger.onRecieve = buildRecieved;
     console.log("before calling");
@@ -1905,8 +1903,10 @@ function teamSelection(selected) {
     console.log(selected);
     isTeamExist(selected);
     var opt = "",
-        selectedchannel = "";
-    var chs = testDetail.channels[activeChatDetail.team.id];
+        chs = "";
+
+    chs = userDetail.channels = getChannels(activeChatDetail.team.id);
+    activeChatDetail.channel = chs[0];
     console.log(chs);
     for (var ch in chs) {
         opt += "<option value='" + chs[ch].id + "'>" + chs[ch].display_name + "</option>";
@@ -1916,7 +1916,7 @@ function teamSelection(selected) {
     $("#channelSelection").append(opt);
     /* $(".mmc-main-nav-item-link").empty();
      $(".mmc-main-nav-item-link").append(chs[0].display_name);*/
-    isChannelExist(activeChatDetail.team.id, chs[0].id); //channel shows in channel box
+    //debugger;
     var posts = getAllPosts(activeChatDetail.team.id, activeChatDetail.channel.id);
     showPosts(posts);
 }
