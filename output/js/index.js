@@ -13,7 +13,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var lastPostId = "";
 var lastPostTime = "";
 
-var env = 0;
+var env = 1;
 var hostURL = "http://localhost:51916/";
 var pathURL = "MattermostApi/";
 var accessURLs = {
