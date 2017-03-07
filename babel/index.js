@@ -7,7 +7,7 @@
     let lastPostId = "";
     let lastPostTime = "";
 
-    let env = 0;
+    let env = 1;
     let hostURL = "http://localhost:51916/";
     let pathURL = "MattermostApi/";
     let accessURLs = {
