@@ -1574,7 +1574,7 @@ function getChannels(teamId) {
             url: accessURLs.getChannels,
             dataType: 'JSON',
             data: JSON.stringify(reqParam),
-            type: 'POST',
+            type: 'GET',
             success: function success(response) {
                 data = JSON.parse(response);
             }

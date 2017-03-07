@@ -1635,7 +1635,7 @@
                 url: accessURLs.getChannels,
                 dataType: 'JSON',
                 data: JSON.stringify(reqParam),
-                type: 'POST',
+                type: 'GET',
                 success: function (response) {
                    data = JSON.parse(response);
                 }
