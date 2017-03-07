@@ -1448,10 +1448,9 @@ function getAllPosts(tmId, chId) {
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function success(response) {
-                data = response;
+                data = JSON.parse(response);
             }
         });
-        return JSON.parse(data);
     }
     return data;
 }
@@ -1468,7 +1467,7 @@ function createPost(teamId, channelId, message) {
         data: JSON.stringify(reqParam),
         type: 'POST',
         success: function success(response) {
-            data = response;
+            data = JSON.parse(response);
         }
     });
     return data;
@@ -1488,7 +1487,7 @@ function getPostsAfterPost(teamId, channelId, postId) {
         data: JSON.stringify(reqParam),
         type: 'POST',
         success: function success(response) {
-            data = response;
+            data = JSON.parse(response);
         }
     });
     return data;
@@ -1506,7 +1505,7 @@ function getPostsSinceTime(teamId, channelId, time) {
         data: JSON.stringify(reqParam),
         type: 'POST',
         success: function success(response) {
-            data = response;
+            data = JSON.parse(response);
         }
     });
     return data;
@@ -1523,7 +1522,7 @@ function getTeamObject(teamId) {
         data: JSON.stringify(reqParam),
         type: 'POST',
         success: function success(response) {
-            data = response;
+            data = JSON.parse(response);
         }
     });
     return data;
@@ -1538,10 +1537,9 @@ function getTeams() {
             dataType: 'json',
             type: 'GET',
             success: function success(response) {
-                data = response;
+                data = JSON.parse(response);
             }
         });
-        return JSON.parse(data);
     }
     return data;
 }
@@ -1558,7 +1556,7 @@ function getTeamMembers(teamId, offset, limit) {
         data: JSON.stringify(reqParam),
         type: 'POST',
         success: function success(response) {
-            data = response;
+            data = JSON.parse(response);
         }
     });
     return data;
@@ -1578,10 +1576,9 @@ function getChannels(teamId) {
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function success(response) {
-                data = response;
+                data = JSON.parse(response);
             }
         });
-        return JSON.parse(data);
     }
     return data;
 }
@@ -1600,7 +1597,7 @@ function getChannel(teamId, channelId) {
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function success(response) {
-                data = response;
+                data = JSON.parse(response);
             }
         });
     }
@@ -1618,7 +1615,7 @@ function getChannelByName(teamId, channelName) {
         data: JSON.stringify(reqParam),
         type: 'POST',
         success: function success(response) {
-            data = response;
+            data = JSON.parse(response);
         }
     });
     return data;
@@ -1634,7 +1631,7 @@ function viewChannel(teamId) {
         data: JSON.stringify(reqParam),
         type: 'POST',
         success: function success(response) {
-            data = response;
+            data = JSON.parse(response);
         }
     });
     return data;
@@ -1650,7 +1647,7 @@ function getchannelsforUser(teamId) {
         data: JSON.stringify(reqParam),
         type: 'POST',
         success: function success(response) {
-            data = response;
+            data = JSON.parse(response);
         }
     });
     return data;
@@ -1676,7 +1673,7 @@ function getUsersInChannel(teamId, channelId) {
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function success(response) {
-                data = response;
+                data = JSON.parse(response);
             }
         });
     }
@@ -1691,7 +1688,7 @@ function accessUsers() {
         data: JSON.stringify(reqParam),
         type: 'POST',
         success: function success(response) {
-            data = response;
+            data = JSON.parse(response);
         }
     });
     return data;

@@ -1509,10 +1509,9 @@
                 data: JSON.stringify(reqParam),
                 type: 'POST',
                 success: function (response) {
-                    data = response;
+                    data = JSON.parse(response);
                 }
             });
-            return JSON.parse(data);
         }
         return data;
     }
@@ -1529,7 +1528,7 @@
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function (response) {
-                data = response;
+               data = JSON.parse(response);
             }
         });
         return data;
@@ -1549,7 +1548,7 @@
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function (response) {
-                data = response;
+               data = JSON.parse(response);
             }
         });
         return data;
@@ -1567,7 +1566,7 @@
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function (response) {
-                data = response;
+               data = JSON.parse(response);
             }
         });
         return data;
@@ -1584,7 +1583,7 @@
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function (response) {
-                data = response;
+               data = JSON.parse(response);
             }
         });
         return data;
@@ -1599,10 +1598,9 @@
                 dataType: 'json',
                 type: 'GET',
                 success: function (response) {
-                    data = response;
+                   data = JSON.parse(response);
                 }
             });
-            return JSON.parse(data);
         }
         return data;
     }
@@ -1619,7 +1617,7 @@
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function (response) {
-                data = response;
+               data = JSON.parse(response);
             }
         });
         return data;
@@ -1639,10 +1637,9 @@
                 data: JSON.stringify(reqParam),
                 type: 'POST',
                 success: function (response) {
-                    data = response;
+                   data = JSON.parse(response);
                 }
             });
-            return JSON.parse(data);
         }
         return data;
     }
@@ -1661,7 +1658,7 @@
                 data: JSON.stringify(reqParam),
                 type: 'POST',
                 success: function (response) {
-                    data = response;
+                   data = JSON.parse(response);
                 }
             });
         }
@@ -1679,7 +1676,7 @@
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function (response) {
-                data = response;
+               data = JSON.parse(response);
             }
         });
         return data;
@@ -1695,7 +1692,7 @@
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function (response) {
-                data = response;
+               data = JSON.parse(response);
             }
         });
         return data;
@@ -1711,7 +1708,7 @@
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function (response) {
-                data = response;
+               data = JSON.parse(response);
             }
         });
         return data;
@@ -1734,7 +1731,7 @@
                 data: JSON.stringify(reqParam),
                 type: 'POST',
                 success: function (response) {
-                    data = response;
+                   data = JSON.parse(response);
                 }
             });
         }
@@ -1749,7 +1746,7 @@
             data: JSON.stringify(reqParam),
             type: 'POST',
             success: function (response) {
-                data = response;
+               data = JSON.parse(response);
             }
         });
         return data;
