@@ -1370,7 +1370,6 @@
     };
     // current login user detail
     let tmpAllTeams = getTeams();
-    alert(tmpAllTeams);
     /*function getAllChannels(teamId) {
         let allChannels = testDetail.channels;
         for (let obj in tmpAllTeams) {
