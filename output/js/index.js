@@ -1299,7 +1299,6 @@ var activeChatDetail = {
 };
 // current login user detail
 var tmpAllTeams = getTeams();
-alert(tmpAllTeams);
 /*function getAllChannels(teamId) {
     let allChannels = testDetail.channels;
     for (let obj in tmpAllTeams) {
